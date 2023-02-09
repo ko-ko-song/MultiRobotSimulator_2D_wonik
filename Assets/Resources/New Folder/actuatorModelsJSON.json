@@ -1,0 +1,215 @@
+{
+  "SensorActuators":[
+   {
+      "id":"MOS",
+      "name":"MOS",
+      "type":"MOS",
+      "targetObjectId":"MOS",
+      "messageFormat":"JSON",
+      "ip": "192.168.92.1",
+      "port": "20808",
+      "actionProtocols" : [
+	    {
+	        "protocolId" : "requestMove",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestMove",
+	                "path" : ["$path"]
+	        },
+	        "actionList" : [
+	                "move($robotID, $path)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackMove"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndMove",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestCancelMove",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestCancelMove"
+	        },
+	        "actionList" : [
+	                "cancelMove($robotID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackCancelMove"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType ": "ackEndCancelMove",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestLoad",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestLoad",
+	                "nodeID" : "$nodeID"
+	        },
+	        "actionList" : [
+	                "load($robotID, $nodeID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackLoad"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndLoad",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestUnload",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestUnload",
+	                "nodeID" : "$nodeID"
+	        },
+	        "actionList" : [
+	                "unload($robotID, $nodeID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackUnload"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndUnload",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestCharge",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestCharge",
+	                "nodeID" : "$nodeID"
+	        },
+	        "actionList" : [
+	                "charge($robotID, $nodeID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackCharge"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndCharge",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestChargeStop",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestChargeStop",
+	                "nodeID" : "$nodeID"
+	        },
+	        "actionList" : [
+	                "chargeStop($robotID, $nodeID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackChargeStop"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndChargeStop",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestPause",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestPause"
+	        },
+	        "actionList" : [
+	                "pause($robotID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackPause"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndPause",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestResume",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID",
+	                "mType" : "requestResume"
+	        },
+	        "actionList" : [
+	                "resume($robotID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackResume"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndResume",
+	                "result" : "$result"
+	        }
+	    },
+	    {
+	        "protocolId" : "requestDoorOpen",
+	        "protocolType": "result",
+	        "requestMessageTemplate" : {
+	                "robotID" : "$robotID"
+	        },
+	        "actionList" : [
+	                "doorOpen($robotID)"
+	        ],
+	        "responseMessageTemplate" : {
+	                "robotID" :"$robotID",
+	                "mType" : "ackDoorOpen"
+	        },
+	        "resultMessageTemplete" : {
+	                "robotID" : "$robotID",
+	                "mType" : "ackEndDoorOpen",
+	                "result" : "$result"
+	        }
+	    }
+	],
+      "sensingProtocols" : [
+	{
+		"protocolId" : "robot1_RTSR",
+		"protocolType": "sensing",
+		"period" : 1,
+		"sensingMessageTemplate" : {
+			"robotID" : "0",
+			"robotStatus" : "$status",
+			"x" : "$positionX",
+			"y" : "$positionY",
+			"theta" : "$theta",
+			"speed" : "$speed",
+			"battery" : "$battery",
+			"loading" : "$loading"
+	}
+      ]    
+    }
+  ]
+}

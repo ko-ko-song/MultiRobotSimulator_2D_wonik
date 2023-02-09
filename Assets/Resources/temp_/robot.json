@@ -1,0 +1,84 @@
+{
+  "environmentObject": [
+    {
+      "id": "1",
+      "name": "1",
+      "type":"Robot",
+      "position":{
+	"x":13.545,
+	"y":11.328,
+	"z":0
+	},
+      "size":{
+	"x":1.2,
+	"y":1.2,
+	"z":0
+	},
+      "color": "#ffbf00",
+      "shape": "Pentagon",
+      "properties": [
+        "physical"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "2",
+      "type":"Robot",
+			"position":{
+				"x":46.7,
+				"y":8.5,
+				"z":0
+			},
+      "size":{
+	"x":1.2,
+	"y":1.2,
+	"z":0
+	},
+      "color": "#ffbf00",
+      "shape": "Pentagon",
+      "properties": [
+        "physical"
+      ]
+    },
+ {
+      "id": "3",
+      "name": "3",
+      "type":"Robot",
+			"position":{
+				"x":13.501,
+				"y":8.445,
+				"z":0
+			},
+      "size":{
+	"x":1.2,
+	"y":1.2,
+	"z":0
+	},
+      "color": "#ffbf00",
+      "shape": "Pentagon",
+      "properties": [
+        "physical"
+      ]
+    },
+ {
+      "id": "4",
+      "name": "4",
+      "type":"Robot",
+			"position":{
+				"x":46.7,
+				"y":7.1,
+				"z":0
+			},
+      "size":{
+	"x":1.2,
+	"y":1.2,
+	"z":0
+	},
+      "color": "#ffbf00",
+      "shape": "Pentagon",
+      "properties": [
+        "physical"
+      ]
+    }
+  ]
+}

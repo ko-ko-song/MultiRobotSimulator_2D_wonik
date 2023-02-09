@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Vertex
+  - Object
+  - Robot
+  - Product
+  - Station
+  - Door
+  - Charger
+  - LoadingStation
+  - Rack
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - vertex
+  - object
+  - Rack
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1055253649
+    locked: 0
+  - name: Vertex
+    uniqueID: 4011344659
+    locked: 0
+  - name: Object
+    uniqueID: 1265333423
+    locked: 0
+  - name: Robot
+    uniqueID: 1904892605
+    locked: 0
+  - name: Rack
+    uniqueID: 252690279
+    locked: 0
+  - name: Product
+    uniqueID: 2199331745
+    locked: 0
+  - name: Text
+    uniqueID: 1218112455
+    locked: 0

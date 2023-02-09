@@ -1,0 +1,1859 @@
+{
+	"sensorActuators": [{
+		"id": "MOS_test",
+		"name": "MOS_test",
+		"type": "MOS",
+		"targetObjectId": "MOS_test",
+		"messageFormat": "packet",
+		"ip": "172.16.165.208",
+		"port": "36666",
+		"actionProtocols": [
+			{
+				"protocolId": "requestLogin",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1956887904,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"login($robotID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 851424104,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 420142072,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestMove",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1435916264,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": "$packetSize",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "pathSize",
+							"value": "$pathSize",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "path",
+							"value": "$path",
+							"type": "int",
+							"size": "4 * $pathSize",
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"move($robotID, $path)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 932256373,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1077550020,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestLoad",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 4170546632,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"load($robotID, $nodeID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3351494188,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1142723790,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestUnload",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 4030151123,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"unload($robotID, $nodeID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 2257541558,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 2245537489,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestCharge",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 381247726,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"charge($robotID, $nodeID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 2588046613,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 2134156431,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestChargeStop",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3418769519,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"chargeStop($robotID, $nodeID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 873637438,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 115226028,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestPause",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 686590401,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"pause($robotID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3647921675,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1462328363,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestResume",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3768250619,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"resume($robotID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 512035250,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3173847598,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestDoorOpen",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 126830703,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"doorOpen($robotID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1907490907,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3386001258,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestDoorClose",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1306136425,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"doorClose($robotID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1894948317,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 2553777995,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestGuideMove",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3199461873,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 24,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "direction",
+							"value": "$direction",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"guideMove($robotID, $nodeID,$direction)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1716105639,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 40196625,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestPreciseMove",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 378477981,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"preciseMove($robotID, $nodeID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1579465771,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3080388831,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestStraightBackMove",
+				"protocolType": "result",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 2897356654,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				},
+				"actionList": [
+					"straightBackMove($robotID, $nodeID)"
+				],
+				"responseMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 860121120,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 16,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "$robotID",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+					}]
+				},
+				"resultMessageTemplete": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 231814264,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 20,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "result",
+							"value": "$result",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			}
+		],
+		"sensingProtocols" : [
+			{
+			        "protocolId" : "robot1_RTSR",
+			        "protocolType": "sensing",
+			        "period" : 0.2,
+			        "sensingMessageTemplate" : {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1397136893,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 41,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "1",
+						"type": "int",
+						"size": 4,
+						"classification": "const"
+						},
+						{
+						"name": "robotStatus",
+						"value": "$status",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "x",
+						"value": "$positionX",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "y",
+						"value": "$positionY",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "theta",
+						"value": "$theta",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "speed",
+						"value": "$speed",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "battery",
+						"value": "$battery",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "loading",
+						"value": "$loading",
+						"type": "bool",
+						"size": 1,
+						"classification": "var"
+						}
+					]
+			        }
+			},
+			{
+			        "protocolId" : "robot2_RTSR",
+			        "protocolType": "sensing",
+			        "period" : 0.2,
+			        "sensingMessageTemplate" : {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1397136893,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 41,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "2",
+						"type": "int",
+						"size": 4,
+						"classification": "const"
+						},
+						{
+						"name": "robotStatus",
+						"value": "$status",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "x",
+						"value": "$positionX",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "y",
+						"value": "$positionY",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "theta",
+						"value": "$theta",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "speed",
+						"value": "$speed",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "battery",
+						"value": "$battery",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "loading",
+						"value": "$loading",
+						"type": "bool",
+						"size": 1,
+						"classification": "var"
+						}
+					]
+			        }
+			},
+			{
+			        "protocolId" : "robot3_RTSR",
+			        "protocolType": "sensing",
+			        "period" : 0.2,
+			        "sensingMessageTemplate" : {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1397136893,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 41,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "3",
+						"type": "int",
+						"size": 4,
+						"classification": "const"
+						},
+						{
+						"name": "robotStatus",
+						"value": "$status",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "x",
+						"value": "$positionX",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "y",
+						"value": "$positionY",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "theta",
+						"value": "$theta",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "speed",
+						"value": "$speed",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "battery",
+						"value": "$battery",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "loading",
+						"value": "$loading",
+						"type": "bool",
+						"size": 1,
+						"classification": "var"
+						}
+					]
+			        }
+			},			
+			{
+			        "protocolId" : "robot4_RTSR",
+			        "protocolType": "sensing",
+			        "period" : 0.2,
+			        "sensingMessageTemplate" : {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 40000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 1397136893,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 41,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+						"name": "robotID",
+						"value": "4",
+						"type": "int",
+						"size": 4,
+						"classification": "const"
+						},
+						{
+						"name": "robotStatus",
+						"value": "$status",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "x",
+						"value": "$positionX",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "y",
+						"value": "$positionY",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "theta",
+						"value": "$theta",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "speed",
+						"value": "$speed",
+						"type": "float",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "battery",
+						"value": "$battery",
+						"type": "int",
+						"size": 4,
+						"classification": "var"
+						},
+						{
+						"name": "loading",
+						"value": "$loading",
+						"type": "bool",
+						"size": 1,
+						"classification": "var"
+						}
+					]
+			        }
+			}					
+		]
+	}]
+}

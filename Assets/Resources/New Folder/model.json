@@ -1,0 +1,22 @@
+{
+  "Items": [
+    {
+      "name": "RobotA",
+      "type": "Actor",
+      "shape": "square",
+      "location": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    {
+      "name": "RobotB",
+      "type": "Actor",
+      "shape": "circle",
+      "location": {
+        "x": 0.0,
+        "y": 0.0
+      }
+    }
+  ]
+}

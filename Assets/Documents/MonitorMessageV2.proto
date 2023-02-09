@@ -1,0 +1,80 @@
+syntax = "proto3";
+package kr.ac.uos.ai.mcmonitor;
+
+//Vector2 => Point로 이름 변경
+message Point {
+  float x = 1;
+  float y = 2;
+}
+
+//구 MonitorAction, 현행유지
+//매번 이벤트가 발생할 때마다(이동 시, 혹은 잡는다거나 등)
+message Changeness {
+  //name => objectID로 변경(가독성 향상)
+  string objectID = 1;
+  string content = 2;
+  Point location = 3;
+  //움직임과 관련된 변화일 경우 첨부됨
+  optional Point movement = 4;
+}
+
+//시각화 모듈에 최초로 전달하는 전체 환경 정보 메시지 타입
+//최초 한 번만 전송
+message InitializeEnvironment {
+  string environmentID = 1;
+  repeated VirtualObject objects = 2;
+}
+
+//InitializeEnvironment 메시지에 사용하는 VirtualObject 데이터 타입
+//최초 한 번만 전송
+message VirtualObject {
+  //id => objectID로 변경(가독성 향상)
+  string objectID = 1;
+  string name = 2;
+  Point position = 3;
+  string type = 4;
+  //property => 최초 동작 시 한번만 전달되기에 병목이 발생할 여지가 없다 판단되어 Map 타입 사용
+  map<string, string> property = 5;
+}
+
+//일정 주기마다 환경 정보 Dump시 사용되는 메시지 타입
+//2~3초에 한번씩 전송
+message DumpEnvironment {
+  //name => environmentID로 변경(가독성 향상)
+  string environmentID = 1;
+  repeated ModifiedVirtualObject objects = 2;
+}
+
+//DumpEnvironment에 사용하기 위해 간략화된 VirtualObjects 데이터 타입
+//2~3초에 한번씩 전송
+message ModifiedVirtualObject {
+  //id => objectID로 변경(가독성 향상)
+  string objectID = 1;
+  Point position = 2;
+  float orientationAngle = 3;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// 웹소켓으로 보내기
+
+
+//시뮬레이션의 라이프사이클 조작을 위해 정의된 메시지 타입
+//시각화 모듈측에서 조작할 경우 전송됨
+message SimulationCommand {
+  enum Command {
+    CREATE = 0;
+    START = 1;
+    RESUME = 2;
+    PAUSE = 3;
+    STOP = 4;
+    DELETE = 5;
+  }
+  Command command = 1;
+  //environmentName => environmentID로 변경(가독성 향상)
+  string environmentID = 2;
+}
+
+//이벤트 실행 관련 메시지 타입, 현재는 사용하고 있지 않음
+message EventGenerate {
+  string name = 1;
+}

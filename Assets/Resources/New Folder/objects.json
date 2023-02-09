@@ -1,0 +1,364 @@
+{
+  "Items":[
+   {
+      "name":"Station1",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+       "145.1", "0.0", "157.8"
+       ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station2",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "145.1",
+        "0.0",
+        "159.3"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station3",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "145.1",
+        "0.0",
+        "160.7"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station4",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "145.1",
+        "0.0",
+        "162.2"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station5",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "145.1",
+        "0.0",
+        "163.6"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station6",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "145.1",
+        "0.0",
+        "165.1"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station11",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "152.2",
+        "0.0",
+        "160.8"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station12",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "152.2",
+        "0.0",
+        "162.2"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station13",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "152.2",
+        "0.0",
+        "163.7"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    { 
+      "name":"Station14",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "152.2",
+        "0.0",
+        "165.1"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station15",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "152.2",
+        "0.0",
+        "166.6"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station18",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "148.3",
+        "0.0",
+        "170.7"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station19",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "150.4",
+        "0.0",
+        "170.7"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station20",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "155.41",
+        "0.0",
+        "171.498"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Station21",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "153.114",
+        "0.0",
+        "171.516"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+     "name":"Station22",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "153",
+        "0.0",
+        "158.1"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    { 
+      "name":"Station23",
+      "tag":"Station",
+      "shape":"Rectangle",
+      "position":[ 
+        "152.505",
+        "0.0",
+        "159.48"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#99ccff"
+    },
+    {
+      "name":"Charger101",
+      "tag":"Charger",
+      "shape":"Rectangle",
+      "position": [
+        "146.9",
+        "0.0",
+        "151.4"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#2DFF2D"
+    },
+    {
+      "name": "Charger102",
+      "tag":"Charger",
+      "shape":"Rectangle",
+      "position": [
+        "151.5", 
+        "0.0",
+        "151.1"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#2DFF2D"
+    },
+    {
+      "name": "Charger103",
+      "tag":"Charger",
+      "shape":"Rectangle",
+      "position": [
+        "153.4",
+        "0.0",
+        "151.4"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#2DFF2D"
+    },
+    {
+      "name": "Charger104",
+      "tag":"Charger",
+      "shape":"Rectangle",
+      "position": [
+        "156.7",
+        "0.0",
+        "151.3"
+      ],
+      "size":["0.6","0.6","0.6"],
+      "properties":[
+        "Collidable"
+      ],
+      "color": "#2DFF2D"
+    },
+    {
+      "name": "Product1",
+      "tag":"Product",
+      "shape":"Rectangle",
+      "position": [
+        "145.1",
+        "0.0",
+        "157.8"
+      ],
+      "size": ["0.4", "0.4", "0.4"],
+      "properties":[
+        "Collidable"
+      ],
+      "color":"brown"
+    },
+    {
+      "name": "Product6",
+      "tag":"Product",
+      "shape":"Rectangle",
+      "position": [
+        "145.1",
+        "0.0",
+        "165.1"
+      ],
+      "size": ["0.4", "0.4", "0.4"],
+      "properties":[
+        "Collidable"
+      ],
+      "color":"brown" 
+    },
+   {
+      "id": "0",
+      "name": "Door0",
+      "tag":"Door",
+      "shape":"Rectangle",
+      "position": [
+       "154",
+        "0.0",
+        "158.7"
+      ],
+      "size":["0.1","1","2"],
+      "properties":[
+        "Door",
+        "Collidable"
+      ],
+      "color": "#000000"
+    }
+  ]
+}
