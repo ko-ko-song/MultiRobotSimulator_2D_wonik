@@ -221,9 +221,27 @@ public class ArbiInterfacePacket
 
     private int getPacketSize(List<int> header)
     {
+        if (header == null) {
+            Debug.Log("header is null");
+            return 0;
+        }
+        
         int packetSize = 0;
         foreach (ActionProtocol actionProtocol in this.sensorActuatorModule.actionProtocols.Values)
         {
+            if (actionProtocol.requestMessageTemplate == null)
+            {
+                Debug.Log(actionProtocol.protocolId + " : requestMessageTemplate is null");
+                return 0;
+            }
+                
+
+            if (actionProtocol.requestMessageTemplate.GetField("packetHeader") == null)
+            {
+                Debug.Log(actionProtocol.protocolId + " : requestMessageTemplate pakcetHeader in null");
+                return 0;
+            }
+            
             List<JSONObject> headerTemplate = actionProtocol.requestMessageTemplate.GetField("packetHeader").list;
 
             for (int i = 0; i<header.Count; i++)

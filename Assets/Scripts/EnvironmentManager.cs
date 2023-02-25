@@ -9,9 +9,9 @@ using System.IO;
 public class EnvironmentManager : MonoBehaviour
 {
 
-    public string runType = "editor";
+    //public string runType = "editor";
     //public string runType = "build";
-    
+    public bool isEditor = true;
     public Dictionary<string, SensorActuatorModule> sensorActuatorModules;
     public GameObject vertexPrefab;
     public GameObject rectPrefab;
@@ -56,7 +56,7 @@ public class EnvironmentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Run Type build or editor : " + this.runType);
+        //Debug.Log("Run Type build or editor : " + this.runType);
         //loadVertex();
         //setVertexName();
         //setRobotsName();
@@ -70,17 +70,26 @@ public class EnvironmentManager : MonoBehaviour
         //loadLocalTextFile(pathInEdior);
 
         string path = "";
-        if (runType.Equals("build"))
+        if (!isEditor)
         {
             path = "./Models/";
         }
-        else if (runType.Equals("editor"))
+        else if (isEditor)
         {
             path = "./Assets/Resources/";
         }
 
-        
-        convertVertexFormatToJson(path);
+            //if (runType.Equals("build"))
+            //{
+            //    path = "./Models/";
+            //}
+            //else if (runType.Equals("editor"))
+            //{
+            //    path = "./Assets/Resources/";
+            //}
+
+
+            convertVertexFormatToJson(path);
         
         extractEdges(path);
         

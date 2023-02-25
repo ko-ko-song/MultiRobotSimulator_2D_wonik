@@ -20,6 +20,10 @@ public class ByteBuffer
     }
     public int getInt()
     {
+        if (buffer == null || buffer.Count==0)
+        {
+            throw new Exception("message size not match protocol model and received message");
+        }
         byte[] b = buffer.ToArray();
         int value = BitConverter.ToInt32(b, 0);
         b = b.Skip(4).ToArray();

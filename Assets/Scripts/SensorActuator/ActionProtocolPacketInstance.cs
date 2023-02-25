@@ -15,7 +15,14 @@ public class ActionProtocolPacketInstance : ActionProtocolInstance
             this.receivedMessage = receivedMessage;
             this.variables = new Dictionary<string, List<string>>();
             this.actionInstance = new Action();
-            this.bindVariables();
+            try
+            {
+                this.bindVariables();
+            }
+            catch(Exception e)
+            {
+                Debug.Log(e);
+            }
         }
     }
     
