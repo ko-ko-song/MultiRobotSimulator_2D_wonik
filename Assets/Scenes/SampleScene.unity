@@ -2793,7 +2793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805db11e947d08b47b5b356fd913c6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runType: editor
+  runType: build
   vertexPrefab: {fileID: 594189526477694956, guid: 87d322ee5409a52428048774669643c7, type: 3}
   rectPrefab: {fileID: 5538853944425998314, guid: 9e5aea84445f2f44bad68dab5eda0ca4, type: 3}
   pentagonPrefab: {fileID: 8132897752999479593, guid: 32e2fe6d3b7c3a24aad06165c0dc92cf, type: 3}
