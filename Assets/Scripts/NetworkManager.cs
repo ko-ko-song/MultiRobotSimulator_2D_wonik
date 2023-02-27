@@ -45,7 +45,7 @@ public class NetworkManager : MonoBehaviour
         //if (Input.GetKeyDown("a"))
             //protoInterface.sendInitialEnvironment();
     }
-
+    
     public static string GetLocalIPAddress()
     {
         var host = Dns.GetHostEntry(Dns.GetHostName());

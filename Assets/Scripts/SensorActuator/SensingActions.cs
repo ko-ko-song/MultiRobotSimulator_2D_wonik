@@ -5,7 +5,6 @@ using System.Text;
 using UnityEngine;
 
 
-
 public class SensingActions : MonoBehaviour
 {
     private float loadTime = 0.1f;
@@ -38,7 +37,11 @@ public class SensingActions : MonoBehaviour
             sb.Append(arg);
             sb.Append("\t");
         }
-
+        if(sb.Length!= 0)
+        {
+            Debug.Log("execute action : " + sb[0] + " : " +functionName);
+        }
+        
         //Debug.Log("action : " + functionName + "\t args :   " + sb.ToString());
 
         switch (functionName)

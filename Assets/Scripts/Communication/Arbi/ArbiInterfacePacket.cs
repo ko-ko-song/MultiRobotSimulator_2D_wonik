@@ -95,6 +95,7 @@ public class ArbiInterfacePacket
             }
         }
 
+        
         if (!isRTSR)
         {
             Debug.Log("send message : \n\n" + JSONMessage.ToString(true));

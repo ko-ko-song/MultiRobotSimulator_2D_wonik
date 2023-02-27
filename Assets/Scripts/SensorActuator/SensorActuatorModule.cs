@@ -63,7 +63,8 @@ public class SensorActuatorModule : MonoBehaviour
         {
             if (ip.AddressFamily == AddressFamily.InterNetwork)
             {
-                return ip.ToString();
+                if(ip.ToString().StartsWith("172.16"))
+                    return ip.ToString();
             }
         }
         throw new Exception("No network adapters with an IPv4 address in the system!");
@@ -161,6 +162,7 @@ public class SensorActuatorModule : MonoBehaviour
             JSONObject responseMessage = actionProtocolInstance.getResponseMessage();
             sendMessgae(responseMessage);
         }
+        Debug.Log("received : " + actionProtocolInstance.actionProtocol.protocolId);
         actionProtocolInstance.bindAction(targetObjectId);
         this.executeAction(actionProtocolInstance);
 

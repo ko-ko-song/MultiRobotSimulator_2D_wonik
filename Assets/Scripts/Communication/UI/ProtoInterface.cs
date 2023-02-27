@@ -31,6 +31,9 @@ public class ProtoInterface
     
     private void send(byte[] buffer)
     {
+        if (webSocketServer == null)
+            return;
+
         if (webSocketServer.IsListening)
         {
             webSocketServer.WebSocketServices["/WebUI"].Sessions.Broadcast(buffer);
