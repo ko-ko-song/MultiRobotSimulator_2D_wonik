@@ -39,15 +39,20 @@ public class ActionProtocol
         sb.Append("protocolID : \t" + this.protocolId + "\n");
         sb.Append("protocolType : \t" + this.protocolType + "\n");
         sb.Append("messageFormat : \t" + this.messageFormat + "\n");
-        sb.Append("requestMessageTemplate : \n" + this.requestMessageTemplate.Print(true) + "\n");
-        sb.Append("responseMessageTemplate : \n" + this.responseMessageTemplate.Print(true) + "\n");
-        sb.Append("resultMessageTemplate : \n" + this.resultMessageTemplate.Print(true) + "\n");
-        sb.Append("actionName : \t" + this.action.actionName + "\n");
-        sb.Append("actionArgs : \t");
-        foreach (string arg in this.action.actionArgs)
-        {
-            sb.Append(arg + "\t");
-        }
+        if(this.requestMessageTemplate!= null)
+            sb.Append("requestMessageTemplate : \n" + this.requestMessageTemplate.Print(true) + "\n");
+        if(this.responseMessageTemplate!= null)
+            sb.Append("responseMessageTemplate : \n" + this.responseMessageTemplate.Print(true) + "\n");
+        if(this.resultMessageTemplate != null)
+            sb.Append("resultMessageTemplate : \n" + this.resultMessageTemplate.Print(true) + "\n");
+        //sb.Append("actionName : \t" + this.action.actionName + "\n");
+        //sb.Append("actionArgs : \t");
+        //foreach (string arg in this.action.actionArgs)
+        //{
+        //    sb.Append(arg + "\t");
+        //}
+            
+        
         sb.Append("\n");
         return sb.ToString();
     }

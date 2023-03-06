@@ -119,8 +119,8 @@ public class CommandScript : MonoBehaviour
     {
         foreach (Robot robot in robots)
         {
-            robot.speed+=0.5f;
-            robot.turningSpeed = robot.turningSpeed + 3;
+            robot.speed+=0.02f;
+            robot.turningSpeed = robot.turningSpeed + 1;
         }
             
 
@@ -130,8 +130,8 @@ public class CommandScript : MonoBehaviour
     {
         foreach (Robot robot in robots)
         {
-            robot.speed-=0.5f;
-            robot.turningSpeed = robot.turningSpeed - 3;
+            robot.speed-=0.02f;
+            robot.turningSpeed = robot.turningSpeed - 1;
         }
     }
 

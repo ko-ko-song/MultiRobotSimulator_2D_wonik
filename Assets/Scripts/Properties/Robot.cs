@@ -9,7 +9,7 @@ public class Robot : MonoBehaviour
     public RobotStatusEnum.RobotStatus previousRobotStatus;
     public string id;
     public float speed = 1f;
-    public float turningSpeed = 28f;
+    public float turningSpeed = 18f;
     //public float speed = 6f;
     //public float turningSpeed = 80f;
     public string locatedVertexName;

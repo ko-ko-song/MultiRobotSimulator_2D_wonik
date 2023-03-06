@@ -567,6 +567,8 @@ public class EnvironmentManager : MonoBehaviour
         foreach (JSONObject actionProtocolModel in actionProtocolModels)
         {
             ActionProtocol actionProtocol = builidActionProtocol(actionProtocolModel, messageFormat);
+
+            //Debug.Log(actionProtocol.protocolId);
             sensorActuatorModule.addActionProtocol(actionProtocol.protocolId, actionProtocol);
         }
     }
@@ -605,6 +607,7 @@ public class EnvironmentManager : MonoBehaviour
         {
             actionProtocol.requestMessageTemplate = actionProtocolModel.GetField("requestMessageTemplate");
             actionProtocol.responseMessageTemplate = actionProtocolModel.GetField("responseMessageTemplate");
+            actionProtocol.resultMessageTemplate = actionProtocolModel.GetField("resultMessageTemplete");
             List<JSONObject> actionModels = actionProtocolModel.GetField("actionList").list;
             foreach (JSONObject actionModel in actionModels)
             {
@@ -613,8 +616,26 @@ public class EnvironmentManager : MonoBehaviour
             }
         }
         
-        actionProtocol.resultMessageTemplate = actionProtocolModel.GetField("resultMessageTemplete");
+        if(actionProtocol.protocolType == "send")
+        {
+            actionProtocol.resultMessageTemplate = actionProtocolModel.GetField("resultMessageTemplete");
+        }
         
+        if(actionProtocol.protocolType == "request")
+        {
+            actionProtocol.requestMessageTemplate = actionProtocolModel.GetField("requestMessageTemplate");
+            actionProtocol.responseMessageTemplate = actionProtocolModel.GetField("responseMessageTemplate");
+            if(actionProtocolModel.GetField("actionList") != null)
+            {
+                List<JSONObject> actionModels = actionProtocolModel.GetField("actionList").list;
+                foreach (JSONObject actionModel in actionModels)
+                {
+                    Action action = buildAction(actionModel);
+                    actionProtocol.action = action;
+                }
+            }
+        }
+
         if (actionProtocolModel.GetField("headerSize") != null)
         {
             actionProtocol.HEADER_SIZE = actionProtocolModel.GetField("headerSize").intValue;

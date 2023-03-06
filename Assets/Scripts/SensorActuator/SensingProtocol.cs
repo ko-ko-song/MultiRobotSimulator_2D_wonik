@@ -11,7 +11,7 @@ public class SensingProtocol
     public string messageFormat;
     public float period;
     public JSONObject sensingMessageTemplate;
-
+    
     public SensingProtocolInstance getInstance()
     {
         if (messageFormat.Equals("JSON"))

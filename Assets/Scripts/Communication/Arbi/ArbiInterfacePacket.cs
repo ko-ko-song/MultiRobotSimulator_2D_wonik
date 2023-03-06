@@ -45,7 +45,7 @@ public class ArbiInterfacePacket
         catch(SocketException e)
         {
             Debug.Log(e.ToString());
-            //this.connect(ip, (Int32.Parse(port) + 1).ToString());
+            this.connect(ip, (Int32.Parse(port) + 1).ToString());
         }
     }
     
@@ -73,6 +73,7 @@ public class ArbiInterfacePacket
                 byte[] bf = byteBuffer.getArray();
                 ns.Write(bf, 0, bf.Length);
                 ns.Flush();
+                //Debug.Log("send Message");
             }
             catch(Exception e)
             {
@@ -83,22 +84,30 @@ public class ArbiInterfacePacket
     
     public void sendMessage(JSONObject JSONMessage)
     {
+        int packetID = 0;
         bool isRTSR = false;
         foreach (JSONObject obj in JSONMessage.GetField("packetHeader").list)
         {
             string name = obj.GetField("name").getStringValue();
             int value = obj.GetField("value").intValue;
 
+            if (name.Equals("packetID"))
+            {
+                packetID = value;
+            }
+
+
             if (name.Equals("packetID") && value == 1397136893)
             {
                 isRTSR = true;
+                packetID = value;
             }
         }
 
-        
         if (!isRTSR)
         {
-            Debug.Log("send message : \n\n" + JSONMessage.ToString(true));
+            Debug.Log("                                                          send message : \t" + packetID);
+            //Debug.Log("send message : \n\n" + JSONMessage.ToString(true));
         }
         
         ByteBuffer byteBuffer = new ByteBuffer();
@@ -163,8 +172,7 @@ public class ArbiInterfacePacket
             ns = c.GetStream();
             if (ns.DataAvailable)
             {
-
-                Debug.Log("some message received");
+                
                 ByteBuffer byteBuffer = new ByteBuffer();
                 byteBuffer.wrap(readByte(HEADER_SIZE));
 
@@ -175,14 +183,15 @@ public class ArbiInterfacePacket
                     int value = byteBuffer.getInt();
                     header.Add(value);
                 }
+                //Debug.Log("message received   packetID : " + header[1]);
                 int packetSize = getPacketSize(header);
 
                 if (packetSize == 0)
                     return;
 
                 byte[] packetData = readByte(packetSize - HEADER_SIZE);
-
                 this.parseMessgae(header, packetData);
+
             }
         }
     }
@@ -200,14 +209,23 @@ public class ArbiInterfacePacket
     {
         foreach (ActionProtocol actionProtocol in this.sensorActuatorModule.actionProtocols.Values)
         {
-            List<JSONObject> headerTemplate = actionProtocol.requestMessageTemplate.GetField("packetHeader").list;
+            //Debug.Log(actionProtocol.protocolId + ", " + actionProtocol.protocolType);
+            //Debug.Log(actionProtocol.protocolId);
+            //Debug.Log(actionProtocol.requestMessageTemplate);
+            if (actionProtocol.requestMessageTemplate == null)
+                continue;
 
+            List<JSONObject> headerTemplate = actionProtocol.requestMessageTemplate.GetField("packetHeader").list;
             for (int i = 0; i < header.Count; i++)
             {
                 if (headerTemplate[i].GetField("classification").getStringValue().Equals("const"))
                 {
+                    //Debug.Log("received : " + header[i] + " , " + headerTemplate[i].GetField("value").intValue);
                     if (header[i] != headerTemplate[i].GetField("value").intValue)
+                    {
                         break;
+                    }
+                        
                 }
                 
                 if (i == (header.Count - 1))
@@ -232,15 +250,15 @@ public class ArbiInterfacePacket
         {
             if (actionProtocol.requestMessageTemplate == null)
             {
-                Debug.Log(actionProtocol.protocolId + " : requestMessageTemplate is null");
-                return 0;
+                //Debug.Log(actionProtocol.protocolId + " : requestMessageTemplate is null");
+                continue;
             }
                 
 
             if (actionProtocol.requestMessageTemplate.GetField("packetHeader") == null)
             {
-                Debug.Log(actionProtocol.protocolId + " : requestMessageTemplate pakcetHeader in null");
-                return 0;
+                //Debug.Log(actionProtocol.protocolId + " : requestMessageTemplate pakcetHeader in null");
+                continue;
             }
             
             List<JSONObject> headerTemplate = actionProtocol.requestMessageTemplate.GetField("packetHeader").list;

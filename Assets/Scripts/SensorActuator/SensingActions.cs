@@ -27,10 +27,14 @@ public class SensingActions : MonoBehaviour
     #region actions
     public void executeAction(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance)
     {
-
-        string functionName = actionProtocolInstance.actionInstance.actionName;
-        List<string> functionArgs = actionProtocolInstance.actionInstance.actionArgs;
-
+        string functionName = "";
+        List<string> functionArgs = new List<string>();
+        if (actionProtocolInstance.actionInstance != null)
+        {
+            functionName = actionProtocolInstance.actionInstance.actionName;
+            functionArgs = actionProtocolInstance.actionInstance.actionArgs;
+        }
+             
         StringBuilder sb = new StringBuilder();
         foreach(string arg in functionArgs)
         {
@@ -39,7 +43,7 @@ public class SensingActions : MonoBehaviour
         }
         if(sb.Length!= 0)
         {
-            Debug.Log("execute action : " + sb[0] + " : " +functionName);
+            Debug.Log(sb[0] + "  execute action : " +functionName);
         }
         
         //Debug.Log("action : " + functionName + "\t args :   " + sb.ToString());
@@ -99,7 +103,7 @@ public class SensingActions : MonoBehaviour
                 RequestPalletizerStop(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
             default:
-                Debug.Log("funtion name undefined " + functionName);
+                Debug.Log("funtion name undefined   may be palletizer Enter, Exit" + functionName);
                 break;
         }
 
@@ -398,8 +402,8 @@ public class SensingActions : MonoBehaviour
             angle = angle - 360;
         }
         float diffAngle = angle - facinWayAngle;
-
-        if (Math.Abs(diffAngle) < 0.5f)
+        
+        if (Math.Abs(diffAngle) < 0.75f)
         {
             return true;
         }
@@ -408,11 +412,11 @@ public class SensingActions : MonoBehaviour
             return false;
         }
     }
-
+    
     private bool isRightPosition(Robot robot, EnvironmentObject vertex)
     {
-        if ((Math.Abs(vertex.position.x - robot.transform.position.x) < 0.05f)
-           && (Math.Abs(vertex.position.y - robot.transform.position.y) < 0.05f))
+        if ((Math.Abs(vertex.position.x - robot.transform.position.x) < 0.1f)
+           && (Math.Abs(vertex.position.y - robot.transform.position.y) < 0.1f))
         {
             return true;
         }

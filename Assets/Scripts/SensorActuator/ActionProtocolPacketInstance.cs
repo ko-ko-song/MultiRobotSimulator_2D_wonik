@@ -110,6 +110,8 @@ public class ActionProtocolPacketInstance : ActionProtocolInstance
 
     public override void bindAction(string targetObjectId)
     {
+        if (actionProtocol.action == null)
+            return;
         string name = actionProtocol.action.actionName;
         List<string> args = new List<string>();
         foreach (string arg in actionProtocol.action.actionArgs)

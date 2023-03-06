@@ -1883,6 +1883,108 @@
 				}
 			},
 			{
+				"protocolId": "requestEnterPalletizer",
+				"protocolType": "request",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 295790657,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 24,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "palletizerID",
+							"value": "$palletizerID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
+				"protocolId": "requestExitPalletizer",
+				"protocolType": "request",
+				"headerSize": 12,
+				"requestMessageTemplate": {
+					"packetHeader": [{
+							"name": "protocolID",
+							"value": 30000,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetID",
+							"value": 3559218166,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						},
+						{
+							"name": "packetSize",
+							"value": 24,
+							"type": "int",
+							"size": 4,
+							"classification": "const"
+						}
+					],
+					"packetData": [{
+							"name": "palletizerID",
+							"value": "$palletizerID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "robotID",
+							"value": "$robotID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						},
+						{
+							"name": "nodeID",
+							"value": "$nodeID",
+							"type": "int",
+							"size": 4,
+							"classification": "var"
+						}
+					]
+				}
+			},
+			{
 				"protocolId": "requestFlatPreciseMove",
 				"protocolType": "result",
 				"headerSize": 12,

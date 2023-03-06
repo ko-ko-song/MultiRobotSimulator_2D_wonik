@@ -54,17 +54,17 @@ public class SensorActuatorModule : MonoBehaviour
         sensingStart();
 
         
-
+        
     }
     public static string GetLocalIPAddress()
     {
         var host = Dns.GetHostEntry(Dns.GetHostName());
+        
         foreach (var ip in host.AddressList)
         {
-            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            if (ip.ToString().StartsWith("192") || ip.ToString().StartsWith("172"))
             {
-                if(ip.ToString().StartsWith("172.16"))
-                    return ip.ToString();
+                return ip.ToString();
             }
         }
         throw new Exception("No network adapters with an IPv4 address in the system!");
@@ -143,8 +143,8 @@ public class SensorActuatorModule : MonoBehaviour
         sb.Append("messageFormat :   " + messageFormat + "\n");
         sb.Append("ip :   " + ip + "\n");
         sb.Append("port :   " + port + "\n");
-        
-        //foreach(ActionProtocol ap in actionProtocols.Values)
+
+        //foreach (ActionProtocol ap in actionProtocols.Values)
         //{
         //    sb.Append(ap.print());
         //}
@@ -154,7 +154,7 @@ public class SensorActuatorModule : MonoBehaviour
         //}
         Debug.Log(sb.ToString());
     }
-
+    
     public void receiveMessage(ActionProtocolInstance actionProtocolInstance)
     {
         if (!actionProtocolInstance.getProtocolType().Equals("request"))

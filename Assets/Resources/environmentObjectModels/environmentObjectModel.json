@@ -161,6 +161,24 @@
 			"color":"brown",
 			"shape":"Rectangle",
 			"properties":["detectable"]
+		},
+		{
+			"id":"Product47",
+			"name":"Product47",
+			"type":"Product",
+			"position":{
+				"x":7.5,
+				"y":4.6,
+				"z":0
+			},
+			"size":{
+				"x":0.35,
+				"y":0.35,
+				"z":0.75
+			},
+			"color":"brown",
+			"shape":"Rectangle",
+			"properties":["detectable"]
 		}
 	]
 }
