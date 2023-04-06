@@ -275,10 +275,8 @@ public class SensingActions : MonoBehaviour
         foreach (string nodeID in path)
         {
             EnvironmentObject nextVertex = EnvironmentManager.instance.getVertex(nodeID);
-
             float angle = calcEastThetaFromLoactedVertex(robot, nextVertex);
             //float diffAngleFacinwayWithNextVertex = calcDiffAngle(angle);
-
             bool turningClockwiseDirection = isClockwiseDirection(robot, angle);
 
             //float turnX = turningSpeed * Mathf.Cos(Mathf.Deg2Rad * diffAngleFacinwayWithNextVertex);
@@ -299,8 +297,8 @@ public class SensingActions : MonoBehaviour
                     {
                         yield return null;
                     }
-                    turnRobot(robot, turningClockwiseDirection);
-                    yield return new WaitForSeconds(0.001f);
+                    turnRobot(robot, angle);
+                    yield return null;
                 }
                 SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endTurn", robot.transform.position.x, robot.transform.position.y, 0, robot.transform.eulerAngles.z));
             }
@@ -317,8 +315,8 @@ public class SensingActions : MonoBehaviour
                 {
                     yield return null;
                 }
-                move(robot, moveVector);
-                yield return new WaitForSeconds(0.001f);
+                move(robot, nextVertex.transform);
+                yield return null;
             }
             SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
             if (robot.loadedObject != null)
@@ -350,6 +348,9 @@ public class SensingActions : MonoBehaviour
         Vector3 diff = targetPosition - robot.transform.position;
 
         float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+        if (angle < 0f)
+            angle = angle + 360;
 
         return angle;
     }
@@ -388,35 +389,45 @@ public class SensingActions : MonoBehaviour
 
     private bool isRightFacingWay(Robot robot, float angle)
     {
-        float facinWayAngle;
-        if (robot.transform.eulerAngles.z <= 180f)
-        {
-            facinWayAngle = robot.transform.eulerAngles.z;
-        }
-        else
-        {
-            facinWayAngle = robot.transform.eulerAngles.z - 360f;
-        }
-        if (angle > 180f)
-        {
-            angle = angle - 360;
-        }
-        float diffAngle = angle - facinWayAngle;
-        
-        if (Math.Abs(diffAngle) < 0.75f)
-        {
+
+        if (Mathf.Abs(angle - robot.transform.rotation.eulerAngles.z) < 0.01) { 
+
             return true;
         }
         else
         {
             return false;
         }
+        
+        //float facinWayAngle;
+        //if (robot.transform.eulerAngles.z <= 180f)
+        //{
+        //    facinWayAngle = robot.transform.eulerAngles.z;
+        //}
+        //else
+        //{
+        //    facinWayAngle = robot.transform.eulerAngles.z - 360f;
+        //}
+        //if (angle > 180f)
+        //{
+        //    angle = angle - 360;
+        //}
+        //float diffAngle = angle - facinWayAngle;
+        
+        //if (Math.Abs(diffAngle) < 0.75f)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
     }
     
     private bool isRightPosition(Robot robot, EnvironmentObject vertex)
     {
-        if ((Math.Abs(vertex.position.x - robot.transform.position.x) < 0.1f)
-           && (Math.Abs(vertex.position.y - robot.transform.position.y) < 0.1f))
+        if ((Math.Abs(vertex.position.x - robot.transform.position.x) < 0.01f)
+           && (Math.Abs(vertex.position.y - robot.transform.position.y) < 0.01f))
         {
             return true;
         }
@@ -426,18 +437,26 @@ public class SensingActions : MonoBehaviour
         }
     }
 
-    private void turnRobot(Robot robot, bool isClockwise)
+    private void turnRobot(Robot robot, float toAngle)
     {
-        
-        if (isClockwise)
-        {
-            robot.transform.Rotate(0.0f, 0.0f, -robot.turningSpeed*Time.deltaTime);
-        }
-        else
-        {
-            robot.transform.Rotate(0.0f, 0.0f, robot.turningSpeed*Time.deltaTime);
-        }
+        Quaternion fromRotation = robot.transform.rotation;
+        Quaternion toRotation = Quaternion.Euler(0f, 0f, toAngle);
+        robot.transform.rotation = Quaternion.RotateTowards(fromRotation, toRotation, Time.deltaTime * robot.turningSpeed);
+
     }
+
+    //private void turnRobot(Robot robot, bool isClockwise)
+    //{
+
+    //    if (isClockwise)
+    //    {
+    //        robot.transform.Rotate(0.0f, 0.0f, -robot.turningSpeed*Time.deltaTime);
+    //    }
+    //    else
+    //    {
+    //        robot.transform.Rotate(0.0f, 0.0f, robot.turningSpeed*Time.deltaTime);
+    //    }
+    //}
     private Vector3 calcVector(Robot robot, EnvironmentObject vertex)
     {
         Vector3 v = new Vector3(vertex.position.x - robot.transform.position.x, vertex.position.y - robot.transform.position.y, 0);
@@ -466,8 +485,8 @@ public class SensingActions : MonoBehaviour
             {
                 yield return null;
             }
-            move(robot, moveVector);
-            yield return new WaitForSeconds(0.001f);
+            move(robot, vertex.transform);
+            yield return null;
         }
         SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
         if (robot.loadedObject != null)
@@ -513,8 +532,8 @@ public class SensingActions : MonoBehaviour
                 {
                     yield return null;
                 }
-                turnRobot(robot, turningClockwiseDirection);
-                yield return new WaitForSeconds(0.001f);
+                turnRobot(robot, angle);
+                yield return null;
             }
             SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endTurn", robot.transform.position.x, robot.transform.position.y, 0, robot.transform.eulerAngles.z));
         }
@@ -533,8 +552,8 @@ public class SensingActions : MonoBehaviour
             {
                 yield return null;
             }
-            move(robot, moveVector);
-            yield return new WaitForSeconds(0.001f);
+            move(robot, vertex.transform);
+            yield return null;
         }
         SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
         if (robot.loadedObject != null)
@@ -547,26 +566,38 @@ public class SensingActions : MonoBehaviour
         //remainingBattery = remainingBattery - 1;
     }
 
-    private void move(Robot robot, Vector3 direction)
+    private void move(Robot robot, Transform target)
     {
- 
-        float speedX = direction.x * Time.deltaTime;
-        float speedY = direction.y * Time.deltaTime;
+
         
-        robot.transform.position = new Vector3(
-            robot.transform.position.x + speedX,
-            robot.transform.position.y + speedY,
-            robot.transform.position.z
-        );
+        robot.transform.position = Vector2.MoveTowards(robot.transform.position, target.position, robot.speed * Time.deltaTime);
 
         if (robot.loadedObject != null)
         {
             robot.loadedObject.transform.position = new Vector3(
-                robot.loadedObject.transform.position.x + speedX,
-                robot.loadedObject.transform.position.y + speedY,
+                robot.transform.position.x,
+                robot.transform.position.y,
                 robot.loadedObject.transform.position.z
             );
         }
+        
+        //float speedX = direction.x * Time.deltaTime;
+        //float speedY = direction.y * Time.deltaTime;
+
+        //robot.transform.position = new Vector3(
+        //    robot.transform.position.x + speedX,
+        //    robot.transform.position.y + speedY,
+        //    robot.transform.position.z
+        //);
+
+        //if (robot.loadedObject != null)
+        //{
+        //    robot.loadedObject.transform.position = new Vector3(
+        //        robot.loadedObject.transform.position.x + speedX,
+        //        robot.loadedObject.transform.position.y + speedY,
+        //        robot.loadedObject.transform.position.z
+        //    );
+        //}
 
     }
     #endregion
@@ -901,8 +932,8 @@ public class SensingActions : MonoBehaviour
                 {
                     yield return null;
                 }
-                turnRobot(robot, turningClockwiseDirection);
-                yield return new WaitForSeconds(0.001f);
+                turnRobot(robot, angle);
+                yield return null;
             }
             SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endTurn", robot.transform.position.x, robot.transform.position.y, 0, robot.transform.eulerAngles.z));
         }
@@ -920,8 +951,8 @@ public class SensingActions : MonoBehaviour
             {
                 yield return null;
             }
-            move(robot, moveVector);
-            yield return new WaitForSeconds(0.001f);
+            move(robot, nextVertex.transform);
+            yield return null;
         }
         SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
         if (robot.loadedObject != null)
@@ -987,8 +1018,8 @@ public class SensingActions : MonoBehaviour
             {
                 yield return null;
             }
-            move(robot, moveVector);
-            yield return new WaitForSeconds(0.001f);
+            move(robot, nextVertex.transform);
+            yield return null;
         }
         SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
         if (robot.loadedObject != null)

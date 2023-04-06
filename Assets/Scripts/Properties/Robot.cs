@@ -8,8 +8,8 @@ public class Robot : MonoBehaviour
     public RobotStatusEnum.RobotStatus robotStatus;
     public RobotStatusEnum.RobotStatus previousRobotStatus;
     public string id;
-    public float speed = 1f;
-    public float turningSpeed = 18f;
+    public float speed = 1.5f;
+    public float turningSpeed = 90f;
     //public float speed = 6f;
     //public float turningSpeed = 80f;
     public string locatedVertexName;
@@ -31,8 +31,9 @@ public class Robot : MonoBehaviour
         robotStatus = RobotStatusEnum.RobotStatus.Ready;
         Invoke("InitObject", 0.3f);
         //StartCoroutine("RTSR");
-    }
 
+    }
+    
     void Update()
     {
 

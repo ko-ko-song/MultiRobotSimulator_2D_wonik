@@ -89,12 +89,15 @@ public class EnvironmentManager : MonoBehaviour
             //}
 
 
-            convertVertexFormatToJson(path);
+        convertVertexFormatToJson(path);
         
         extractEdges(path);
         
         loadLocalTextFile(path);
         
+        Robot robot1 = GameObject.FindWithTag("Robot").GetComponent<Robot>();
+        Debug.Log("robot velocity         : " + robot1.speed + " m/s");
+        Debug.Log("robot Angular velocity : " + robot1.turningSpeed + " degree/s");
     }
 
     private void extractEdges(string path)

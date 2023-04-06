@@ -117,22 +117,23 @@ public class CommandScript : MonoBehaviour
 
     public void upRobotVelocity()
     {
-        foreach (Robot robot in robots)
-        {
-            robot.speed+=0.02f;
-            robot.turningSpeed = robot.turningSpeed + 1;
-        }
-            
-
-
+        Time.timeScale += 0.1f;
+        //foreach (Robot robot in robots)
+        //{
+        //    robot.speed+=0.02f;
+        //    robot.turningSpeed = robot.turningSpeed + 1;
+        //}
+        Debug.Log("배속 : " + Time.timeScale);
     }
     public void downRobotVelocity()
     {
-        foreach (Robot robot in robots)
-        {
-            robot.speed-=0.02f;
-            robot.turningSpeed = robot.turningSpeed - 1;
-        }
+        Time.timeScale -= 0.1f;
+        //foreach (Robot robot in robots)
+        //{
+        //    robot.speed-=0.02f;
+        //    robot.turningSpeed = robot.turningSpeed - 1;
+        //}
+        Debug.Log("배속 : " + Time.timeScale);
     }
 
 }
