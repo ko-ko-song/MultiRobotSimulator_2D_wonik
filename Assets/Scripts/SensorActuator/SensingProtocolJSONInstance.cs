@@ -80,12 +80,18 @@ public class SensingProtocolJSONInstance : SensingProtocolInstance
             case "$positionX":
                 v.type = "float";
                 v.value = robot.transform.position.x.ToString();
-
+                
                 break;
             case "$positionY":
                 v.type = "float";
-                v.value = robot.transform.position.y.ToString();
-
+                if(robot.GetComponent<EnvironmentObject>().position.y >= 2)
+                {
+                    v.value = (robot.transform.position.y - EnvironmentManager.zPlus).ToString();
+                }
+                else
+                {
+                    v.value = robot.transform.position.y.ToString();
+                }
                 break;
             case "$theta":
                 v.type = "float";

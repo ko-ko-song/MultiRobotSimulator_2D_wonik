@@ -15,7 +15,7 @@ public class ActionProtocolJSONInstance : ActionProtocolInstance
         this.actionInstance = new Action();
         this.bindVariables();
     }
-
+    
     public override void bindVariables()
     {
         foreach (string key in this.actionProtocol.requestMessageTemplate.keys)

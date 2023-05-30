@@ -99,7 +99,11 @@ public class SensorActuatorModule : MonoBehaviour
 
     public void sendMessgae(JSONObject message)
     {
-        if (messageFormat.Equals("JSON"))
+        if(message == null)
+        {
+            return;
+        }
+        else if (messageFormat.Equals("JSON"))
         {
             this.arbiInterfaceJSON.sendMessage(message);
         }

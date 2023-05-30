@@ -79,7 +79,19 @@ public class SensingProtocolPacketInstance : SensingProtocolInstance
         Variable v = new Variable();
         GameObject gobj = GameObject.Find(id);
 
+        if (gobj == null)
+        {
+            Debug.LogError("[error]  | id로 game object를 찾을 수 없음");
+            return v;
+        }
+
         Robot robot = gobj.GetComponent<Robot>();
+        if (robot == null)
+        {
+            Debug.LogError("[error]   | 로봇 id에 해당하는 Robot class를 찾을 수 없음");
+            return v;
+        }
+            
 
         switch (key)
         {
@@ -101,8 +113,15 @@ public class SensingProtocolPacketInstance : SensingProtocolInstance
                 break;
             case "$positionY":
                 v.type = "int";
-                v.value = ((int)(robot.transform.position.y*1000)).ToString();
-
+                if (robot.GetComponent<EnvironmentObject>().position.y >= 2)
+                {
+                    v.value = ((int)(robot.transform.position.y - EnvironmentManager.zPlus)*1000).ToString();
+                }
+                else
+                {
+                    v.value = ((int)(robot.transform.position.y * 1000)).ToString();
+                }
+                
                 break;
             case "$theta":
                 v.type = "float";

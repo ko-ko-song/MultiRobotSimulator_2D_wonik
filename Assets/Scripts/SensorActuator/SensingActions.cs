@@ -14,8 +14,8 @@ public class SensingActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
+
 
     // Update is called once per frame
     void Update()
@@ -53,7 +53,6 @@ public class SensingActions : MonoBehaviour
             case "move":
                 RequestMove(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
-
             case "cancelMove":
                 RequestCancelMove(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
@@ -76,10 +75,10 @@ public class SensingActions : MonoBehaviour
                 RequestResume(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
             case "doorOpen":
-                RequestDoorOpen(sensorActuatorModule, actionProtocolInstance, functionArgs);
+                RequestOpenDoor(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
             case "doorClose":
-                RequestDoorClose(sensorActuatorModule, actionProtocolInstance, functionArgs);
+                RequestCloseDoor(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
             case "personCall":
                 break;
@@ -88,7 +87,6 @@ public class SensingActions : MonoBehaviour
                 break;
             case "guideMove":
                 RequestPreciseMove(sensorActuatorModule, actionProtocolInstance, functionArgs);
-
                 break;
             case "preciseMove":
                 RequestPreciseMove(sensorActuatorModule, actionProtocolInstance, functionArgs);
@@ -102,13 +100,165 @@ public class SensingActions : MonoBehaviour
             case "palletizerStop":
                 RequestPalletizerStop(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
+            case "openDoor":
+                RequestOpenDoor(sensorActuatorModule, actionProtocolInstance, functionArgs);
+                break;
+            case "closeDoor":
+                RequestCloseDoor(sensorActuatorModule, actionProtocolInstance, functionArgs);
+                break;
             default:
                 Debug.Log("funtion name undefined   may be palletizer Enter, Exit" + functionName);
                 break;
         }
-
+        
     }
 
+    //private IEnumerator moveBack(Robot robot, string vertexID)
+    //{
+    //    EnvironmentObject vertex = EnvironmentManager.instance.getVertex(vertexID);
+
+    //    Vector3 moveVector = calcVector(robot, vertex);
+
+    //    SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "move", vertex.position.x, vertex.position.y, moveVector.x, moveVector.y));
+    //    if (robot.loadedObject != null)
+    //    {
+    //        SendMessageUpwards("sendLogMessage", new LogMessage(robot.loadedObject.name, "move", vertex.position.x, vertex.position.y, moveVector.x, moveVector.y));
+    //    }
+    //    while (!isRightPosition(robot, vertex))
+    //    {
+    //        while (robot.robotStatus == RobotStatusEnum.RobotStatus.Paused)
+    //        {
+    //            yield return null;
+    //        }
+    //        move(robot, vertex.transform);
+    //        yield return null;
+    //    }
+    //    SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
+    //    if (robot.loadedObject != null)
+    //    {
+    //        SendMessageUpwards("sendLogMessage", new LogMessage(robot.loadedObject.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
+    //    }
+    //    robot.locatedVertex = vertex;
+    //    robot.locatedVertexName = vertex.name;
+
+    //    //remainingBattery = remainingBattery - 1;
+
+    //    robot.robotStatus = RobotStatusEnum.RobotStatus.Ready;
+    //}
+    
+    private void RequestOpenDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
+    {        
+        string doorId = functionArgs[0];
+        GameObject gobj = GameObject.Find(doorId);
+        
+        if (gobj == null)
+        {
+            Debug.Log("해당 id의 door을 찾을 수 없음");
+            return;
+        }
+        Robot door = gobj.GetComponent<Robot>();
+        Debug.Log(door);
+        
+        IEnumerator coroutine = openDoor(sensorActuatorModule, actionProtocolInstance, door, functionArgs);
+        
+        if (door.behaviorCoroutine != null)
+        {
+            StopCoroutine(door.behaviorCoroutine);
+        }
+        
+        door.behaviorCoroutine = coroutine;
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator openDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, Robot door, List<string> functionArgs)
+    {
+
+        float openingTime = 3f;
+        float originalSizeX = door.transform.localScale.x;
+        float originalSizeY = door.transform.localScale.y;
+
+        if (door.transform.localScale.x > door.transform.localScale.y)
+        {
+            while (door.transform.localScale.x > 0.1f)
+            {
+                float decreasingRatio = originalSizeX / openingTime * Time.deltaTime;
+                door.transform.localScale = new Vector2(door.transform.localScale.x - decreasingRatio, originalSizeY);
+                door.transform.position= new Vector2(door.transform.position.x - decreasingRatio/2, door.transform.position.y);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (door.transform.localScale.y > 0.1f)
+            {
+                float decreasingRatio = originalSizeY / openingTime * Time.deltaTime;
+                door.transform.localScale = new Vector2(originalSizeX, door.transform.localScale.y - decreasingRatio);
+                door.transform.position = new Vector2(door.transform.position.x, originalSizeY + decreasingRatio / 2);
+                yield return null;
+                
+            }
+        }
+
+        if (actionProtocolInstance.getProtocolType().Equals("result"))
+        {
+            sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(0));
+        }
+
+        door.robotStatus = RobotStatusEnum.RobotStatus.Ready;
+    }
+    
+    private void RequestCloseDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
+    {
+        string doorId = functionArgs[0];
+        GameObject gobj = GameObject.Find(doorId);
+
+        if (gobj == null)
+        {
+            Debug.Log("해당 id의 door을 찾을 수 없음");
+            return;
+        }
+        Robot door = gobj.GetComponent<Robot>();
+
+        IEnumerator coroutine = closeDoor(sensorActuatorModule, actionProtocolInstance, door, functionArgs);
+
+        if (door.behaviorCoroutine != null)
+        {
+            StopCoroutine(door.behaviorCoroutine);
+        }
+
+        door.behaviorCoroutine = coroutine;
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator closeDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, Robot door, List<string> functionArgs)
+    {
+        float closingTime = 3f;
+
+        float originalSizeX = door.gameObject.GetComponent<EnvironmentObject>().size.x;
+        float originalSizeY = door.gameObject.GetComponent<EnvironmentObject>().size.y;
+
+        while (door.transform.localScale.x < originalSizeX)
+        {
+            float increasingRatio = originalSizeX / closingTime * Time.deltaTime;
+            door.transform.localScale = new Vector2(door.transform.localScale.x + increasingRatio, originalSizeY);
+            yield return null;
+        }
+        
+        while (door.transform.localScale.y < originalSizeY)
+        {
+            float increasingRatio = originalSizeY / closingTime * Time.deltaTime;
+            door.transform.localScale = new Vector2(originalSizeX , door.transform.localScale.y + increasingRatio);
+            yield return null;
+        }
+        
+        if (actionProtocolInstance.getProtocolType().Equals("result"))
+        {
+            sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(0));
+        }
+
+        door.robotStatus = RobotStatusEnum.RobotStatus.Ready;
+    }
+    
     private void RequestPalletizerStop(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
     {
         string robotId = functionArgs[0];

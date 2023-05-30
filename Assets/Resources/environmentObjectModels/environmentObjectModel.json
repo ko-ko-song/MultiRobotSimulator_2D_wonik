@@ -1,184 +1,436 @@
 {
 	"environmentObject":[
 		{
-			"id":"Charger500",
-			"name":"Chager500",
-			"type":"Charger",
+			"id":"wall101",
+			"name":"wall101",
+			"type":"Wall",
 			"position":{
-				"x":47.4,
-				"y":8.5,
-				"z":0
-			},
-			"size":{
-				"x":0.5,
-				"y":0.5,
-				"z":0.5
-			},
-			"color":"#8b00ff",
-			"shape":"Rectangle",
-			"properties":["detectable"]
-		},
-		{
-			"id":"Charger501",
-			"name":"Chager501",
-			"type":"Charger",
-			"position":{
-				"x":47.4,
-				"y":7.1,
-				"z":0
-			},
-			"size":{
-				"x":0.5,
-				"y":0.5,
-				"z":0.5
-			},
-			"color":"#8b00ff",
-			"shape":"Rectangle",
-			"properties":["detectable"]
-		},
-		{
-			"id":"Rack1",
-			"name":"Rack1",
-			"type":"Rack",
-			"position":{
-				"x":38,
-				"y":2.6,
-				"z":0
-			},
-			"size":{
-				"x":1.6,
-				"y":1.6,
+				"x":2.1,
+				"y":2.1,
 				"z":1
 			},
-			"color":"white",
+			"size":{
+				"x":0.2,
+				"y":4.4,
+				"z":1
+			},
+			"color":"#545454",
 			"shape":"Rectangle",
-			"properties":["detectable","carryable"]
+			"properties":[]
 		},
 		{
-			"id":"Rack2",
-			"name":"Rack2",
-			"type":"Rack",
+			"id":"wall102",
+			"name":"wall102",
+			"type":"Wall",
 			"position":{
-				"x":7.5,
+				"x":-2.1,
+				"y":2.1,
+				"z":1
+			},
+			"size":{
+				"x":0.2,
+				"y":4.4,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall103",
+			"name":"wall103",
+			"type":"Wall",
+			"position":{
+				"x":2.1,
+				"y":6.3,
+				"z":1
+			},
+			"size":{
+				"x":0.2,
+				"y":4.4,
+				"z":1
+			},
+			"color":"#000000",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall104",
+			"name":"wall104",
+			"type":"Wall",
+			"position":{
+				"x":-2.1,
+				"y":6.3,
+				"z":1
+			},
+			"size":{
+				"x":0.2,
+				"y":4.4,
+				"z":1
+			},
+			"color":"#000000",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall105",
+			"name":"wall105",
+			"type":"Wall",
+			"position":{
+				"x":0,
 				"y":8.4,
-				"z":0
-			},
-			"size":{
-				"x":1.6,
-				"y":1.6,
 				"z":1
 			},
-			"color":"white",
+			"size":{
+				"x":4.4,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#000000",
 			"shape":"Rectangle",
-			"properties":["detectable","carryable"]
+			"properties":[]
 		},
 		{
-			"id":"Rack3",
-			"name":"Rack3",
-			"type":"Rack",
+			"id":"wall201",
+			"name":"wall201",
+			"type":"Wall",
 			"position":{
-				"x":7.5,
+				"x":0,
+				"y":0,
+				"z":2
+			},
+			"size":{
+				"x":4.2,
+				"y":0.2,
+				"z":2
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall202",
+			"name":"wall202",
+			"type":"Wall",
+			"position":{
+				"x":2.1,
+				"y":1,
+				"z":2
+			},
+			"size":{
+				"x":0.2,
+				"y":2.2,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall203",
+			"name":"wall203",
+			"type":"Wall",
+			"position":{
+				"x":-2.1,
 				"y":3,
-				"z":0
+				"z":2
 			},
 			"size":{
-				"x":1.6,
-				"y":1.6,
+				"x":0.2,
+				"y":2.2,
 				"z":1
 			},
-			"color":"white",
+			"color":"#545454",
 			"shape":"Rectangle",
-			"properties":["detectable","carryable"]
+			"properties":[]
 		},
 		{
-			"id":"Rack4",
-			"name":"Rack4",
-			"type":"Rack",
+			"id":"wall204",
+			"name":"wall204",
+			"type":"Wall",
 			"position":{
-				"x":37.8,
-				"y":8.3,
-				"z":0
+				"x":-2.1,
+				"y":6.3,
+				"z":2
 			},
 			"size":{
-				"x":1.6,
-				"y":1.6,
+				"x":0.2,
+				"y":4.4,
 				"z":1
 			},
-			"color":"white",
+			"color":"#000000",
 			"shape":"Rectangle",
-			"properties":["detectable","carryable"]
+			"properties":[]
 		},
 		{
-			"id":"Rack5",
-			"name":"Rack5",
-			"type":"Rack",
+			"id":"wall205",
+			"name":"wall205",
+			"type":"Wall",
 			"position":{
-				"x":7.5,
-				"y":4.6,
-				"z":0
+				"x":0,
+				"y":8.4,
+				"z":2
 			},
 			"size":{
-				"x":1.6,
-				"y":1.6,
+				"x":4,
+				"y":0.2,
 				"z":1
 			},
-			"color":"white",
+			"color":"#000000",
 			"shape":"Rectangle",
-			"properties":["detectable","carryable"]
+			"properties":[]
 		},
 		{
-			"id":"Product23",
-			"name":"Product23",
-			"type":"Product",
+			"id":"wall206",
+			"name":"wall206",
+			"type":"Wall",
 			"position":{
-				"x":37.8,
-				"y":8.3,
-				"z":0
+				"x":2.1,
+				"y":6.3,
+				"z":2
 			},
 			"size":{
-				"x":0.35,
-				"y":0.35,
-				"z":0.75
+				"x":0.2,
+				"y":4.4,
+				"z":1
 			},
-			"color":"brown",
+			"color":"#000000",
 			"shape":"Rectangle",
-			"properties":["detectable"]
+			"properties":[]
 		},
 		{
-			"id":"Product37",
-			"name":"Product37",
-			"type":"Product",
+			"id":"wall207",
+			"name":"wall207",
+			"type":"Wall",
 			"position":{
-				"x":7.5,
-				"y":3,
-				"z":0
+				"x":-5.2,
+				"y":0,
+				"z":2
 			},
 			"size":{
-				"x":0.35,
-				"y":0.35,
-				"z":0.75
+				"x":6.2,
+				"y":0.2,
+				"z":1
 			},
-			"color":"brown",
+			"color":"#545454",
 			"shape":"Rectangle",
-			"properties":["detectable"]
+			"properties":[]
 		},
 		{
-			"id":"Product47",
-			"name":"Product47",
-			"type":"Product",
+			"id":"wall208",
+			"name":"wall208",
+			"type":"Wall",
 			"position":{
-				"x":7.5,
-				"y":4.6,
-				"z":0
+				"x":-8.2,
+				"y":-1.9,
+				"z":2
 			},
 			"size":{
-				"x":0.35,
-				"y":0.35,
-				"z":0.75
+				"x":0.2,
+				"y":4,
+				"z":1
 			},
-			"color":"brown",
+			"color":"#545454",
 			"shape":"Rectangle",
-			"properties":["detectable"]
+			"properties":[]
+		},
+		{
+			"id":"wall209",
+			"name":"wall209",
+			"type":"Wall",
+			"position":{
+				"x":-9.3,
+				"y":-3.8,
+				"z":2
+			},
+			"size":{
+				"x":2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall210",
+			"name":"wall210",
+			"type":"Wall",
+			"position":{
+				"x":-10.4,
+				"y":-0.9,
+				"z":2
+			},
+			"size":{
+				"x":0.2,
+				"y":6,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall211",
+			"name":"wall211",
+			"type":"Wall",
+			"position":{
+				"x":-6.3,
+				"y":2,
+				"z":2
+			},
+			"size":{
+				"x":8.2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall212",
+			"name":"wall212",
+			"type":"Wall",
+			"position":{
+				"x":5.2,
+				"y":4.2,
+				"z":2
+			},
+			"size":{
+				"x":6.2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall213",
+			"name":"wall213",
+			"type":"Wall",
+			"position":{
+				"x":8.2,
+				"y":6.1,
+				"z":2
+			},
+			"size":{
+				"x":0.2,
+				"y":4,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall214",
+			"name":"wall214",
+			"type":"Wall",
+			"position":{
+				"x":9.3,
+				"y":8,
+				"z":2
+			},
+			"size":{
+				"x":2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall215",
+			"name":"wall215",
+			"type":"Wall",
+			"position":{
+				"x":10.4,
+				"y":5,
+				"z":2
+			},
+			"size":{
+				"x":0.2,
+				"y":6.2,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"wall216",
+			"name":"wall216",
+			"type":"Wall",
+			"position":{
+				"x":6.2,
+				"y":2.0,
+				"z":2
+			},
+			"size":{
+				"x":8.2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#545454",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"front_door101",
+			"name":"front_door101",
+			"type":"Door",
+			"position":{
+				"x":0,
+				"y":0,
+				"z":1
+			},
+			"size":{
+				"x":4.2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#7E88EC",
+			"shape":"Rectangle",
+			"properties":["physical"]
+		},
+		{
+			"id":"evelvator_door102",
+			"name":"evelvator_door102",
+			"type":"Door",
+			"position":{
+				"x":0,
+				"y":4.2,
+				"z":1
+			},
+			"size":{
+				"x":4.2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#F8614A",
+			"shape":"Rectangle",
+			"properties":["physical"]
+		},
+		{
+			"id":"evelvator_door201",
+			"name":"evelvator_door201",
+			"type":"Door",
+			"position":{
+				"x":0,
+				"y":4.2,
+				"z":2
+			},
+			"size":{
+				"x":4.2,
+				"y":0.2,
+				"z":1
+			},
+			"color":"#F8614A",
+			"shape":"Rectangle",
+			"properties":["physical"]
 		}
 	]
 }

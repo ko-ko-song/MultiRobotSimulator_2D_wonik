@@ -58,10 +58,17 @@ public class Robot : MonoBehaviour
         //    speed = 0.3f;
         //    turningSpeed = 12f;
         //}
+
+        if(v == null)
+        {
+            Debug.Log(transform.name + ": 초기 vertex 찾을 수 없음");
+            return;
+        }
+        
         if(gameObject.transform.localScale.x > 0.1)
             initLocatedVertex(v);
     }
-
+    
     private void initLocatedVertex(EnvironmentObject vertex)
     {
         if(vertex == null)

@@ -8,6 +8,8 @@ using System.IO;
 
 public class EnvironmentManager : MonoBehaviour
 {
+    //2층을 보여줄 때 z를 zPlus 값만큼 + 해서 유니티에 그려 사용하다가 외부로 포지션이 나갈 떄 zPlus 값만큼 빼기
+    public static float zPlus = 20f;
 
     //public string runType = "editor";
     //public string runType = "build";
@@ -20,7 +22,6 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject productPrefab;
     public GameObject rackPrefab;
     public List<Edge> edges = new List<Edge>();
-
     public Dictionary<string, EnvironmentObject> vertexes;
 
     public Dictionary<string, EnvironmentObject> ALLobj;
@@ -42,6 +43,8 @@ public class EnvironmentManager : MonoBehaviour
             instance = this;
         }
 
+        //로봇 아이디 넣고 생성
+
         sensorActuatorModules = new Dictionary<string, SensorActuatorModule>();
         ALLobj = new Dictionary<string, EnvironmentObject>();
         camera = GameObject.Find("Main Camera").GetComponent<MirrorFlipCamera>();
@@ -56,18 +59,6 @@ public class EnvironmentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("Run Type build or editor : " + this.runType);
-        //loadVertex();
-        //setVertexName();
-        //setRobotsName();
-        //setEdges();
-        
-
-        //string pathInEdior = "./Assets/Resources/";
-        //string pathInBuild = "./Models/";
-
-        //loadLocalTextFile(pathInBuild);
-        //loadLocalTextFile(pathInEdior);
 
         string path = "";
         if (!isEditor)
@@ -79,14 +70,6 @@ public class EnvironmentManager : MonoBehaviour
             path = "./Assets/Resources/";
         }
 
-            //if (runType.Equals("build"))
-            //{
-            //    path = "./Models/";
-            //}
-            //else if (runType.Equals("editor"))
-            //{
-            //    path = "./Assets/Resources/";
-            //}
 
 
         convertVertexFormatToJson(path);
@@ -94,10 +77,30 @@ public class EnvironmentManager : MonoBehaviour
         extractEdges(path);
         
         loadLocalTextFile(path);
+
+        GameObject gobj = GameObject.FindWithTag("Robot");
+        if(gobj!= null)
+        {
+            Robot robot1 = gobj.GetComponent<Robot>();
+            if (robot1 != null)
+            {
+                Debug.Log("robot velocity         : " + robot1.speed + " m/s");
+                Debug.Log("robot Angular velocity : " + robot1.turningSpeed + " degree/s");
+            }
+        }
+
+        loadRosNode();
         
-        Robot robot1 = GameObject.FindWithTag("Robot").GetComponent<Robot>();
-        Debug.Log("robot velocity         : " + robot1.speed + " m/s");
-        Debug.Log("robot Angular velocity : " + robot1.turningSpeed + " degree/s");
+    }
+    
+    private void loadRosNode()
+    {
+        GameObject obj = new GameObject("ROS");
+        ROSInterface roi = obj.AddComponent<ROSInterface>();
+        roi.robotID = "1";
+
+        ROSInterface roi2 = obj.AddComponent<ROSInterface>();
+        roi2.robotID = "2";
     }
 
     private void extractEdges(string path)
@@ -105,9 +108,11 @@ public class EnvironmentManager : MonoBehaviour
         string filePath = path + "/environmentObjectModels/";
         string[] environmentObjectModels = Directory.GetFiles(path + "temp/", "*.json", SearchOption.AllDirectories);
         
-        if (environmentObjectModels.Contains(path+"temp/edges.json"))
+        if (environmentObjectModels.Contains(path + "temp/edges.json"))
+        {
             return;
-        
+        }
+
         StreamReader sr = new StreamReader(filePath + "map_cloud.txt");
         JSONObject objectModel = new JSONObject();
         JSONObject map = JSONObject.emptyArray;
@@ -302,11 +307,15 @@ public class EnvironmentManager : MonoBehaviour
             edges.RemoveAt(i);
         }
     }
-
+    
     private void MakeEdges()
     {
         foreach(Edge edge in edges)
         {
+            if (this.getVertex(edge.vertex1Id) == null || this.getVertex(edge.vertex2Id) == null)
+            {
+                continue;
+            }
             Vector3 position1 = this.getVertex(edge.vertex1Id).transform.position;
             Vector3 position2 = this.getVertex(edge.vertex2Id).transform.position;
 
@@ -334,7 +343,7 @@ public class EnvironmentManager : MonoBehaviour
 
         }
     }
-
+    
     private void Temp()
     {
         Color color = Color.clear;
@@ -406,8 +415,8 @@ public class EnvironmentManager : MonoBehaviour
             {
                 try
                 {
-
-                    Invoke("LoadEdges", 0.3f);
+                    LoadEdges();
+                    //Invoke("LoadEdges", 0.3f);
                 }
                 catch
                 {
@@ -804,13 +813,22 @@ public class EnvironmentManager : MonoBehaviour
             eobj.simulationProperties = simulationProperties;
             eobj.init();
 
-            if (type.Equals("Vertex"))
-                gobj.name = "Vertex" + id;
-            else
-                gobj.name = id;
+            //if (type.Equals("Vertex"))
+            //    gobj.name = "Vertex" + id;
+            //else
+            //    gobj.name = id;
+            gobj.name = id;
             gobj.tag = type;
             gobj.transform.localScale = size;
-            gobj.transform.position = position;
+            if(position.z >= 2)
+            {
+                gobj.transform.position = new Vector3(position.x, position.y +EnvironmentManager.zPlus, position.z);
+            }
+            else
+            {
+                gobj.transform.position = position;
+            }
+            
             if (type.Equals("Vertex"))
                 this.vertexes.Add(id, eobj);
 
@@ -837,15 +855,21 @@ public class EnvironmentManager : MonoBehaviour
                 gobj.AddComponent<Robot>().id = id;
                 gobj.transform.SetParent(GameObject.Find("Controller").transform, false);
             }
+            //else if (type.Equals("Door"))
+            //{
+            //    gobj.AddComponent<Door>().id = id;
+            //    gobj.transform.SetParent(GameObject.Find("Controller").transform, false);
+            //}
             else if (type.Equals("Door"))
             {
-                gobj.AddComponent<Door>().id = id;
+                gobj.AddComponent<Robot>().id = id;
                 gobj.transform.SetParent(GameObject.Find("Controller").transform, false);
             }
         }
     }
     public EnvironmentObject getVertex(string vertexID)
     {
+        
         if (vertexes.ContainsKey(vertexID))
             return vertexes[vertexID];
 

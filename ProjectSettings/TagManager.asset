@@ -13,6 +13,7 @@ TagManager:
   - Charger
   - LoadingStation
   - Rack
+  - Wall
   layers:
   - Default
   - TransparentFX
