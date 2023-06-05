@@ -35,7 +35,7 @@ public class ArbiInterfaceJSON
         catch (SocketException e)
         {
             Debug.Log(e.ToString());
-            //this.connect(ip, (Int32.Parse(port) + 1).ToString());
+            this.connect(ip, (Int32.Parse(port) + 1).ToString());
         }
     }
 

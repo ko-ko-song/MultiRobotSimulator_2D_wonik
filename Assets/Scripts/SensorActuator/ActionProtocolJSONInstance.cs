@@ -58,7 +58,7 @@ public class ActionProtocolJSONInstance : ActionProtocolInstance
                 args.Add(arg);
             }
         }
-        if (!this.receivedMessage.keys.Contains("robotID"))
+        if (!this.receivedMessage.keys.Contains("robotID") && !this.receivedMessage.keys.Contains("id") && !this.receivedMessage.keys.Contains("ID"))
         {
             this.actionInstance.actionArgs.Insert(0, targetObjectId);
         }
@@ -70,6 +70,8 @@ public class ActionProtocolJSONInstance : ActionProtocolInstance
     public override JSONObject getResponseMessage()
     {
         JSONObject responseMessage = new JSONObject();
+        if (actionProtocol.responseMessageTemplate == null)
+            return null;
         foreach (string key in actionProtocol.responseMessageTemplate.keys)
         {
             string value = actionProtocol.responseMessageTemplate.GetField(key).getStringValue();

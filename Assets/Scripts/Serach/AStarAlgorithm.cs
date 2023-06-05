@@ -52,7 +52,6 @@ public class AStarAlgorithm
         List<string> path = new List<string>();
         string currentId = goalId;
 
-
         while (currentId != startId)
         {
             path.Insert(0, currentId);

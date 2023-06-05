@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,12 +26,14 @@ public class Utility
     /// ex) 10, 40, 1 --> 10, 10, 2
     /// </summary>
     /// <param name="position"></param>
-    /// <returns></returns>
+    /// <returns></returns> 
     public static Vector3 ChangeExitPosition(Vector3 position)
     {
-        if(position.y >= zOffset)
+        int y = Convert.ToInt32(Math.Round(position.y));
+
+        if (position.y >= 2)
         {
-            return new Vector3(position.x, position.y - zOffset, position.z + 1);
+            return new Vector3(position.x, position.y - zOffset, position.z);
         }
 
         return position;
@@ -46,7 +49,7 @@ public class Utility
     {
         if(position.z >= 2)
         {
-            return new Vector3(position.x, position.y + zOffset, position.z - 1);
+            return new Vector3(position.x, position.y + zOffset, position.z);
         }
         return position;
     }

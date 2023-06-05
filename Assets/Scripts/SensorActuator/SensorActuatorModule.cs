@@ -164,7 +164,8 @@ public class SensorActuatorModule : MonoBehaviour
         if (!actionProtocolInstance.getProtocolType().Equals("request"))
         {
             JSONObject responseMessage = actionProtocolInstance.getResponseMessage();
-            sendMessgae(responseMessage);
+            if(responseMessage != null)
+                sendMessgae(responseMessage);
         }
         Debug.Log("received : " + actionProtocolInstance.actionProtocol.protocolId);
         actionProtocolInstance.bindAction(targetObjectId);

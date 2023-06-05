@@ -28,7 +28,7 @@ public class Robot : MonoBehaviour
     void Start()
     {
         aroundObjects = new List<GameObject>();
-        robotStatus = RobotStatusEnum.RobotStatus.Ready;
+        robotStatus = RobotStatusEnum.RobotStatus.IDLE;
         Invoke("InitObject", 0.3f);
         //StartCoroutine("RTSR");
 

@@ -392,6 +392,7 @@ public class EnvironmentManager : MonoBehaviour
         {
             StreamReader sr = new StreamReader(file);
             string data = sr.ReadToEnd();
+
             loadSensorActuatorModule(new JSONObject(data));
         }
     }
@@ -820,20 +821,15 @@ public class EnvironmentManager : MonoBehaviour
             gobj.name = id;
             gobj.tag = type;
             gobj.transform.localScale = size;
-            if(position.z >= 2)
-            {
-                gobj.transform.position = new Vector3(position.x, position.y +EnvironmentManager.zPlus, position.z);
-            }
-            else
-            {
-                gobj.transform.position = position;
-            }
+            gobj.transform.position = Utility.ChangeEntrancePosition(position);
+            eobj.position = Utility.ChangeEntrancePosition(position);
             
             if (type.Equals("Vertex"))
                 this.vertexes.Add(id, eobj);
 
             if (simulationProperties.Contains("detectable"))
                 gobj.AddComponent<Collidable>();
+                
             if (simulationProperties.Contains("physical"))
                 gobj.AddComponent<Physical>();
 

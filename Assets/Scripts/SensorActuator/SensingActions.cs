@@ -14,8 +14,13 @@ public class SensingActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Invoke("test",5.0f);
     }
 
+    //public void test()
+    //{
+    //    RequestMoveElevator(null, null, new List<string> { "1" });
+    //}
 
     // Update is called once per frame
     void Update()
@@ -106,46 +111,212 @@ public class SensingActions : MonoBehaviour
             case "closeDoor":
                 RequestCloseDoor(sensorActuatorModule, actionProtocolInstance, functionArgs);
                 break;
+            case "openElevatorDoor":
+                RequestOpenElevatorDoor(sensorActuatorModule, actionProtocolInstance, functionArgs);
+                break;
+            case "closeElevatorDoor":
+                RequestCloseElevatorDoor(sensorActuatorModule, actionProtocolInstance, functionArgs);
+                break;
+            case "moveElevator":
+                RequestMoveElevator(sensorActuatorModule, actionProtocolInstance, functionArgs);
+                break;
             default:
                 Debug.Log("funtion name undefined   may be palletizer Enter, Exit" + functionName);
                 break;
         }
         
     }
-
-    //private IEnumerator moveBack(Robot robot, string vertexID)
-    //{
-    //    EnvironmentObject vertex = EnvironmentManager.instance.getVertex(vertexID);
-
-    //    Vector3 moveVector = calcVector(robot, vertex);
-
-    //    SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "move", vertex.position.x, vertex.position.y, moveVector.x, moveVector.y));
-    //    if (robot.loadedObject != null)
-    //    {
-    //        SendMessageUpwards("sendLogMessage", new LogMessage(robot.loadedObject.name, "move", vertex.position.x, vertex.position.y, moveVector.x, moveVector.y));
-    //    }
-    //    while (!isRightPosition(robot, vertex))
-    //    {
-    //        while (robot.robotStatus == RobotStatusEnum.RobotStatus.Paused)
-    //        {
-    //            yield return null;
-    //        }
-    //        move(robot, vertex.transform);
-    //        yield return null;
-    //    }
-    //    SendMessageUpwards("sendLogMessage", new LogMessage(robot.transform.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
-    //    if (robot.loadedObject != null)
-    //    {
-    //        SendMessageUpwards("sendLogMessage", new LogMessage(robot.loadedObject.name, "endMove", robot.transform.position.x, robot.transform.position.y, 0, 0));
-    //    }
-    //    robot.locatedVertex = vertex;
-    //    robot.locatedVertexName = vertex.name;
-
-    //    //remainingBattery = remainingBattery - 1;
-
-    //    robot.robotStatus = RobotStatusEnum.RobotStatus.Ready;
-    //}
     
+    private void RequestCloseElevatorDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
+    {
+        string doorId = functionArgs[0];
+        string floor = functionArgs[1];
+        
+        GameObject gobj = GameObject.Find(doorId+"_"+floor);
+        if (gobj == null)
+        {
+            Debug.Log("해당 id의 elevator door을 찾을 수 없음");
+            return;
+        }
+        Robot door = gobj.GetComponent<Robot>();
+
+        IEnumerator coroutine = closeElevatorDoor(sensorActuatorModule, actionProtocolInstance, door, functionArgs);
+
+        if (door.behaviorCoroutine != null)
+        {
+            StopCoroutine(door.behaviorCoroutine);
+        }
+
+        door.behaviorCoroutine = coroutine;
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator closeElevatorDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, Robot door, List<string> functionArgs)
+    {
+        float closingTime = 3f;
+
+        float originalSizeX = door.gameObject.GetComponent<EnvironmentObject>().size.x;
+        float originalSizeY = door.gameObject.GetComponent<EnvironmentObject>().size.y;
+
+        if (actionProtocolInstance.getProtocolType().Equals("result"))
+        {
+            sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(3));
+        }
+
+        while (door.transform.localScale.x < originalSizeX)
+        {
+            float increasingRatio = originalSizeX / closingTime * Time.deltaTime;
+            door.transform.localScale = new Vector2(door.transform.localScale.x + increasingRatio, originalSizeY);
+            door.transform.position = new Vector2(door.transform.position.x + increasingRatio / 2, door.transform.position.y);
+
+            yield return null;
+        }
+
+        while (door.transform.localScale.y < originalSizeY)
+        {
+            float increasingRatio = originalSizeY / closingTime * Time.deltaTime;
+            door.transform.localScale = new Vector2(originalSizeX, door.transform.localScale.y + increasingRatio);
+            door.transform.position = new Vector2(door.transform.position.x , door.transform.position.y + increasingRatio / 2);
+            
+            yield return null;
+        }
+
+        if (actionProtocolInstance.getProtocolType().Equals("result"))
+        {
+            sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(2));
+        }
+
+        door.robotStatus = RobotStatusEnum.RobotStatus.Ready;
+    }
+
+    private IEnumerator openElevatorDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, Robot door, List<string> functionArgs)
+    {
+        float openingTime = 3f;
+        float originalSizeX = door.transform.localScale.x;
+        float originalSizeY = door.transform.localScale.y;
+
+        if (actionProtocolInstance.getProtocolType().Equals("result"))
+        {
+            sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(1));
+        }
+
+        if (door.transform.localScale.x > door.transform.localScale.y)
+        {
+            while (door.transform.localScale.x > 0.1f)
+            {
+                float decreasingRatio = originalSizeX / openingTime * Time.deltaTime;
+                door.transform.localScale = new Vector2(door.transform.localScale.x - decreasingRatio, originalSizeY);
+                door.transform.position = new Vector2(door.transform.position.x - decreasingRatio / 2, door.transform.position.y);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (door.transform.localScale.y > 0.1f)
+            {
+                float decreasingRatio = originalSizeY / openingTime * Time.deltaTime;
+                door.transform.localScale = new Vector2(originalSizeX, door.transform.localScale.y - decreasingRatio);
+                door.transform.position = new Vector2(door.transform.position.x, originalSizeY + decreasingRatio / 2);
+                yield return null;
+
+            }
+        }
+
+        if (actionProtocolInstance.getProtocolType().Equals("result"))
+        {
+            sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(0));
+        }
+        
+        door.robotStatus = RobotStatusEnum.RobotStatus.Ready;
+    }
+
+    private void RequestOpenElevatorDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
+    {
+        string doorId = functionArgs[0];
+        string floor = functionArgs[1];
+
+        GameObject gobj = GameObject.Find(doorId + "_" + floor);
+        if (gobj == null)
+        {
+            Debug.Log("해당 id의 elevator door을 찾을 수 없음");
+            return;
+        }
+        Robot door = gobj.GetComponent<Robot>();
+
+        IEnumerator coroutine = openElevatorDoor(sensorActuatorModule, actionProtocolInstance, door, functionArgs);
+
+        if (door.behaviorCoroutine != null)
+        {
+            StopCoroutine(door.behaviorCoroutine);
+        }
+
+        door.behaviorCoroutine = coroutine;
+        StartCoroutine(coroutine);
+    }
+
+    private void RequestMoveElevator(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
+    {
+        string goalFloor = functionArgs[1];
+        GameObject elevator_vertex = null;
+        List<GameObject> robots = new List<GameObject>();
+        if(goalFloor == "1")
+        {
+            elevator_vertex = GameObject.Find("elevator2_in_vertex");
+        }
+        else if(goalFloor == "2")
+        {
+            elevator_vertex = GameObject.Find("elevator1_in_vertex");
+        }
+        else
+        {
+            Debug.Log("floor err : " + goalFloor);
+        }
+
+        if (elevator_vertex == null)
+            return;
+        
+        foreach (GameObject gobj in GameObject.FindGameObjectsWithTag("Robot"))
+        {
+            float distance = Vector2.Distance(elevator_vertex.transform.position, gobj.transform.position);
+            if (distance < 1.5f)
+            {
+                robots.Add(gobj);
+            }
+        }
+
+        IEnumerator coroutine = moveElevator(sensorActuatorModule, actionProtocolInstance, robots, goalFloor);
+        StartCoroutine(coroutine);
+    }
+    
+    private IEnumerator moveElevator(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<GameObject> robots, string floor)
+    {
+        float movementTime = 3.0f;
+        
+        yield return new WaitForSeconds(movementTime);
+        
+        foreach (GameObject robotObj in robots)
+        {
+            Robot robot = robotObj.GetComponent<Robot>();
+            Vector3 robotPosition = robotObj.transform.position;
+            if (floor == "1")
+            {
+                robotObj.transform.position = new Vector3(robotPosition.x, robotPosition.y - Utility.zOffset, 1);
+                robot.locatedVertex = EnvironmentManager.instance.getVertexByPosition(robot.transform.position);
+            }
+            else if (floor == "2")
+            {
+                robotObj.transform.position = new Vector3(robotPosition.x, robotPosition.y + Utility.zOffset, 2);
+                robot.locatedVertex = EnvironmentManager.instance.getVertexByPosition(robot.transform.position);
+            }
+        }
+       
+        if (actionProtocolInstance.getProtocolType().Equals("result"))
+        {
+            sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(Int32.Parse(floor)));
+        }
+
+    }
+
     private void RequestOpenDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
     {        
         string doorId = functionArgs[0];
@@ -193,7 +364,7 @@ public class SensingActions : MonoBehaviour
             {
                 float decreasingRatio = originalSizeY / openingTime * Time.deltaTime;
                 door.transform.localScale = new Vector2(originalSizeX, door.transform.localScale.y - decreasingRatio);
-                door.transform.position = new Vector2(door.transform.position.x, originalSizeY + decreasingRatio / 2);
+                door.transform.position = new Vector2(door.transform.position.x, originalSizeY - decreasingRatio / 2);
                 yield return null;
                 
             }
@@ -203,7 +374,7 @@ public class SensingActions : MonoBehaviour
         {
             sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(0));
         }
-
+        
         door.robotStatus = RobotStatusEnum.RobotStatus.Ready;
     }
     
@@ -241,6 +412,9 @@ public class SensingActions : MonoBehaviour
         {
             float increasingRatio = originalSizeX / closingTime * Time.deltaTime;
             door.transform.localScale = new Vector2(door.transform.localScale.x + increasingRatio, originalSizeY);
+            door.transform.position = new Vector2(door.transform.position.x + increasingRatio / 2, door.transform.position.y);
+
+
             yield return null;
         }
         
@@ -248,6 +422,8 @@ public class SensingActions : MonoBehaviour
         {
             float increasingRatio = originalSizeY / closingTime * Time.deltaTime;
             door.transform.localScale = new Vector2(originalSizeX , door.transform.localScale.y + increasingRatio);
+            door.transform.position = new Vector2(door.transform.position.x, originalSizeY + increasingRatio / 2);
+
             yield return null;
         }
         

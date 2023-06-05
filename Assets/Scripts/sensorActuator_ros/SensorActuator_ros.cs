@@ -14,10 +14,8 @@ public class SensorActuator_ros : MonoBehaviour
     public void MoveRobot(string robotID, Vector3 position, float velocity)
     {
 
-
         GameObject robotObj = GameObject.Find(robotID);
         EnvironmentObject vertex = EnvironmentManager.instance.getVertexByPosition(position);
-       
 
         if (robotObj == null)
         {
@@ -32,6 +30,7 @@ public class SensorActuator_ros : MonoBehaviour
         
         Robot robot = robotObj.GetComponent<Robot>();
         robot.speed = velocity;
+
         List<string> path = FindPath(robot.locatedVertex.id, vertex.id);
         IEnumerator coroutine = MoveThroughPath(robot, path);
         
@@ -85,7 +84,7 @@ public class SensorActuator_ros : MonoBehaviour
             
         }
 
-        robot.robotStatus = RobotStatusEnum.RobotStatus.Ready;
+        robot.robotStatus = RobotStatusEnum.RobotStatus.IDLE;
     }
     private float calcEastThetaFromLoactedVertex(Robot robot, EnvironmentObject nextVertex)
     {
@@ -135,7 +134,7 @@ public class SensorActuator_ros : MonoBehaviour
 
     private void move(Robot robot, Transform target)
     {
-        robot.transform.position = Vector2.MoveTowards(robot.transform.position, target.position, robot.speed * Time.deltaTime);
+        robot.transform.position = Vector3.MoveTowards(robot.transform.position, target.position, robot.speed * Time.deltaTime);
 
         if (robot.loadedObject != null)
         {

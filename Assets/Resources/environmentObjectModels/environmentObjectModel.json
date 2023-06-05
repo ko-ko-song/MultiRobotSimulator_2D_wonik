@@ -379,8 +379,8 @@
 			"properties":[]
 		},
 		{
-			"id":"front_door101",
-			"name":"front_door101",
+			"id":"front_door1",
+			"name":"front_door1",
 			"type":"Door",
 			"position":{
 				"x":0,
@@ -397,8 +397,8 @@
 			"properties":["physical"]
 		},
 		{
-			"id":"evelvator_door102",
-			"name":"evelvator_door102",
+			"id":"ev-204-1_1",
+			"name":"ev-204-1_1",
 			"type":"Door",
 			"position":{
 				"x":0,
@@ -415,8 +415,8 @@
 			"properties":["physical"]
 		},
 		{
-			"id":"evelvator_door201",
-			"name":"evelvator_door201",
+			"id":"ev-204-1_2",
+			"name":"ev-204-1_2",
 			"type":"Door",
 			"position":{
 				"x":0,

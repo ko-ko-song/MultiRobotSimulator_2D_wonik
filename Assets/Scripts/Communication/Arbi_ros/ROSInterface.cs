@@ -40,9 +40,7 @@ public class ROSInterface : MonoBehaviour
         mapChangeRequestTopicName = robotID+ "/map_request";
         currentPoseTopicName = robotID+"/localization/robot_pos";
         robotStatusTopicName = robotID+"/status";
-        messageFrequency = 1.0f;
-
-
+        
         robotObj = GameObject.Find(robotID);
 
         // start the ROS connection
@@ -109,9 +107,10 @@ public class ROSInterface : MonoBehaviour
             ros.Publish(currentPoseTopicName, currentPoseMsg);
 
             // Wait for the next publish
-            yield return new WaitForSeconds(messageFrequency);
+            yield return new WaitForSeconds(0.03f);
         }
     }
+    
 
     private IEnumerator PublishStatus()
     {
@@ -125,7 +124,7 @@ public class ROSInterface : MonoBehaviour
 
             ros.Publish(robotStatusTopicName, statusMsg);
             
-            yield return new WaitForSeconds(messageFrequency);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -158,7 +157,7 @@ public class ROSInterface : MonoBehaviour
         
         string type = msg.type;
 
-        float velocity = 0.0f;
+        float velocity = 0.1f;
         if (type == "normal")
         {
             velocity = 1f;

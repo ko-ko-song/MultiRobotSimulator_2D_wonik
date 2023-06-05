@@ -77,7 +77,7 @@
 			"name":"rom201_vertex",
 			"type":"Vertex",
 			"position":{
-				"x":-9.8,
+				"x":-9.3,
 				"y":-1.8,
 				"z":2
 			},
@@ -96,7 +96,7 @@
 			"type":"Vertex",
 			"position":{
 				"x":-7,
-				"y":1.4,
+				"y":1,
 				"z":2
 			},
 			"size":{
@@ -131,26 +131,8 @@
 			"name":"vertex_2",
 			"type":"Vertex",
 			"position":{
-				"x":-9.8,
-				"y":1.4,
-				"z":2
-			},
-			"size":{
-				"x":0.4,
-				"y":0.4,
-				"z":0.001
-			},
-			"color":"#000000",
-			"shape":"Rectangle",
-			"properties":[]
-		},
-		{
-			"id":"vertex_3",
-			"name":"vertex_3",
-			"type":"Vertex",
-			"position":{
-				"x":-7,
-				"y":0.6,
+				"x":-9.3,
+				"y":1,
 				"z":2
 			},
 			"size":{
@@ -167,8 +149,8 @@
 			"name":"waiting_vertex",
 			"type":"Vertex",
 			"position":{
-				"x":1.6,
-				"y":0.6,
+				"x":1.4,
+				"y":0.8,
 				"z":2
 			},
 			"size":{
@@ -186,8 +168,26 @@
 			"type":"Vertex",
 			"position":{
 				"x":-1.4,
-				"y":1.4,
+				"y":1,
 				"z":2
+			},
+			"size":{
+				"x":0.4,
+				"y":0.4,
+				"z":0.001
+			},
+			"color":"#000000",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"start_vertex_2",
+			"name":"start_vertex_2",
+			"type":"Vertex",
+			"position":{
+				"x":5.5,
+				"y":1.5,
+				"z":1
 			},
 			"size":{
 				"x":0.4,
