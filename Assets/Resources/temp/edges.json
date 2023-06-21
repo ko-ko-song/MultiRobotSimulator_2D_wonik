@@ -32,98 +32,123 @@
 		},
 		{
 			"id":"edge6",
-			"vertex1":"elevator1_door_vertex",
-			"vertex2":"front_door_vertex"
+			"vertex1":"front_in_vertex",
+			"vertex2":"vertex_7"
 		},
 		{
 			"id":"edge7",
 			"vertex1":"elevator1_door_vertex",
-			"vertex2":"elevator1_in_vertex"
+			"vertex2":"front_door_vertex"
 		},
 		{
 			"id":"edge8",
+			"vertex1":"elevator1_door_vertex",
+			"vertex2":"elevator1_in_vertex"
+		},
+		{
+			"id":"edge9",
+			"vertex1":"elevator1_door_vertex",
+			"vertex2":"vertex_7"
+		},
+		{
+			"id":"edge10",
 			"vertex1":"elevator1_in_vertex",
 			"vertex2":"elevator1_door_vertex"
 		},
 		{
-			"id":"edge9",
+			"id":"edge11",
 			"vertex1":"elevator2_door_vertex",
 			"vertex2":"waiting_vertex"
 		},
 		{
-			"id":"edge10",
+			"id":"edge12",
 			"vertex1":"elevator2_door_vertex",
 			"vertex2":"vertex_5"
 		},
 		{
-			"id":"edge11",
+			"id":"edge13",
 			"vertex1":"elevator2_door_vertex",
 			"vertex2":"elevator2_in_vertex"
 		},
 		{
-			"id":"edge12",
+			"id":"edge14",
 			"vertex1":"elevator2_in_vertex",
 			"vertex2":"elevator2_door_vertex"
 		},
 		{
-			"id":"edge13",
+			"id":"edge15",
 			"vertex1":"room201_vertex",
 			"vertex2":"vertex_2"
 		},
 		{
-			"id":"edge14",
+			"id":"edge16",
 			"vertex1":"room202_vertex",
 			"vertex2":"vertex_2"
 		},
 		{
-			"id":"edge15",
+			"id":"edge17",
 			"vertex1":"room202_vertex",
 			"vertex2":"vertex_5"
 		},
 		{
-			"id":"edge16",
+			"id":"edge18",
 			"vertex1":"vertex_1",
 			"vertex2":"start_vertex"
 		},
 		{
-			"id":"edge17",
+			"id":"edge19",
 			"vertex1":"vertex_1",
 			"vertex2":"start_vertex_2"
 		},
 		{
-			"id":"edge18",
+			"id":"edge20",
 			"vertex1":"vertex_1",
 			"vertex2":"front_door_vertex"
 		},
 		{
-			"id":"edge19",
+			"id":"edge21",
 			"vertex1":"vertex_2",
 			"vertex2":"room201_vertex"
 		},
 		{
-			"id":"edge20",
+			"id":"edge22",
 			"vertex1":"vertex_2",
 			"vertex2":"room202_vertex"
 		},
 		{
-			"id":"edge21",
-			"vertex1":"waiting_vertex",
-			"vertex2":"elevator2_door_vertex"
-		},
-		{
-			"id":"edge22",
-			"vertex1":"waiting_vertex",
-			"vertex2":"vertex_5"
-		},
-		{
 			"id":"edge23",
-			"vertex1":"vertex_5",
+			"vertex1":"waiting_vertex",
 			"vertex2":"elevator2_door_vertex"
 		},
 		{
 			"id":"edge24",
+			"vertex1":"waiting_vertex",
+			"vertex2":"vertex_5"
+		},
+		{
+			"id":"edge25",
+			"vertex1":"vertex_5",
+			"vertex2":"elevator2_door_vertex"
+		},
+		{
+			"id":"edge26",
 			"vertex1":"vertex_5",
 			"vertex2":"room202_vertex"
+		},
+		{
+			"id":"edge27",
+			"vertex1":"vertex_6",
+			"vertex2":"front_door_vertex"
+		},
+		{
+			"id":"edge28",
+			"vertex1":"vertex_7",
+			"vertex2":"elevator1_door_vertex"
+		},
+		{
+			"id":"edge29",
+			"vertex1":"vertex_7",
+			"vertex2":"front_in_vertex"
 		}
 	]
 }

@@ -91,11 +91,19 @@ public class ArbiInterfaceJSON
     {
         JSONObject receivedMessageJSON = new JSONObject(receivedMessage);
         if (receivedMessageJSON.keys == null)
-           return;
+        {
+            Debug.Log("key not found");
+            return;
+        }
+           
 
         ActionProtocol actionProtocol = this.getMatchedProtocol(receivedMessageJSON);
         if (actionProtocol == null)
+        {
+            Debug.Log("can't find matched protocol");
             return;
+        }
+            
 
         ActionProtocolInstance actionProtocolInstance = actionProtocol.getInstance(receivedMessageJSON);
         sensorActuatorModule.receiveMessage(actionProtocolInstance);

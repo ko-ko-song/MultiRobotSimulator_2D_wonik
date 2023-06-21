@@ -14,6 +14,7 @@ TagManager:
   - LoadingStation
   - Rack
   - Wall
+  - Elevator
   layers:
   - Default
   - TransparentFX

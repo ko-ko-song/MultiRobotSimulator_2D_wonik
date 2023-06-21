@@ -21,6 +21,10 @@ public class SensorActuatorModule : MonoBehaviour
     public Dictionary<string, SensingProtocol> sensingProtocols = new Dictionary<string, SensingProtocol>();
     public ArbiInterfaceJSON arbiInterfaceJSON;
     public ArbiInterfacePacket arbiInterfacePacket;
+
+    private void Awake()
+    {
+    }
     void Start()
     {
         ip = GetLocalIPAddress();
@@ -167,7 +171,7 @@ public class SensorActuatorModule : MonoBehaviour
             if(responseMessage != null)
                 sendMessgae(responseMessage);
         }
-        Debug.Log("received : " + actionProtocolInstance.actionProtocol.protocolId);
+        //Debug.Log("received : " + actionProtocolInstance.actionProtocol.protocolId);
         actionProtocolInstance.bindAction(targetObjectId);
         this.executeAction(actionProtocolInstance);
 

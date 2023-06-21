@@ -97,10 +97,10 @@ public class EnvironmentManager : MonoBehaviour
     {
         GameObject obj = new GameObject("ROS");
         ROSInterface roi = obj.AddComponent<ROSInterface>();
-        roi.robotID = "1";
+        roi.robotID = "robot1";
 
         ROSInterface roi2 = obj.AddComponent<ROSInterface>();
-        roi2.robotID = "2";
+        roi2.robotID = "robot2";
     }
 
     private void extractEdges(string path)
@@ -432,7 +432,7 @@ public class EnvironmentManager : MonoBehaviour
                     Debug.Log("temp error");
                 }
                 camera.setPosition();
-                setVertexName();
+                //setVertexName();
             }
             else if (jsonObject[0].list[0].GetField("type").getStringValue().Equals("Robot"))
                 setRobotsName();
@@ -710,7 +710,14 @@ public class EnvironmentManager : MonoBehaviour
     private void setRobotsName()
     {
         GameObject[] robotObjs = GameObject.FindGameObjectsWithTag("Robot");
-        foreach (GameObject robot in robotObjs)
+        List<GameObject> robotObjLists = new List<GameObject>(robotObjs);
+
+        GameObject[] doorObjs = GameObject.FindGameObjectsWithTag("Door");
+        List<GameObject> doorObjList = new List<GameObject>(doorObjs);
+
+        robotObjLists.AddRange(doorObjList);
+
+        foreach (GameObject robot in robotObjLists)
         {
             if(robot.transform.localScale.x < 0.1)
             {
@@ -720,7 +727,7 @@ public class EnvironmentManager : MonoBehaviour
             TextMesh robotNametextMesh = robotName.AddComponent<TextMesh>();
             
             robotNametextMesh.characterSize = 0.3f;
-            robotNametextMesh.fontSize = 40;
+            robotNametextMesh.fontSize = 20;
             robotNametextMesh.fontStyle = FontStyle.Bold;
             robotNametextMesh.alignment = TextAlignment.Center;
             robotNametextMesh.anchor = TextAnchor.MiddleCenter;

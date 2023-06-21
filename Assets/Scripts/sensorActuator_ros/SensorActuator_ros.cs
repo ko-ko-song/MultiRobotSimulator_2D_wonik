@@ -6,6 +6,11 @@ using UnityEngine;
 public class SensorActuator_ros : MonoBehaviour
 {
     private Graph graph;
+
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
         graph = new Graph();
@@ -19,12 +24,13 @@ public class SensorActuator_ros : MonoBehaviour
 
         if (robotObj == null)
         {
-            Debug.Log("robot not found");
+
+            Debug.Log("robot not found   | received : " +robotID);
             return;
         }
         if (vertex == null)
         {
-            Debug.Log("vertex not found");
+            Debug.Log("vertex not found    | received : " +position);
             return;
         }
         

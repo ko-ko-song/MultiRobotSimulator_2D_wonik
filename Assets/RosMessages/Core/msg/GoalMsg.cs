@@ -16,25 +16,19 @@ namespace RosMessageTypes.Core
 
         public HeaderMsg header;
         public Geometry.PoseMsg pose;
-        public string id;
-        public string name;
         public string type;
 
         public GoalMsg()
         {
             this.header = new HeaderMsg();
             this.pose = new Geometry.PoseMsg();
-            this.id = "";
-            this.name = "";
             this.type = "";
         }
 
-        public GoalMsg(HeaderMsg header, Geometry.PoseMsg pose, string id, string name, string type)
+        public GoalMsg(HeaderMsg header, Geometry.PoseMsg pose, string type)
         {
             this.header = header;
             this.pose = pose;
-            this.id = id;
-            this.name = name;
             this.type = type;
         }
 
@@ -44,8 +38,6 @@ namespace RosMessageTypes.Core
         {
             this.header = HeaderMsg.Deserialize(deserializer);
             this.pose = Geometry.PoseMsg.Deserialize(deserializer);
-            deserializer.Read(out this.id);
-            deserializer.Read(out this.name);
             deserializer.Read(out this.type);
         }
 
@@ -53,8 +45,6 @@ namespace RosMessageTypes.Core
         {
             serializer.Write(this.header);
             serializer.Write(this.pose);
-            serializer.Write(this.id);
-            serializer.Write(this.name);
             serializer.Write(this.type);
         }
 
@@ -63,8 +53,6 @@ namespace RosMessageTypes.Core
             return "GoalMsg: " +
             "\nheader: " + header.ToString() +
             "\npose: " + pose.ToString() +
-            "\nid: " + id.ToString() +
-            "\nname: " + name.ToString() +
             "\ntype: " + type.ToString();
         }
 

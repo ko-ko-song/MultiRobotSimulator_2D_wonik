@@ -32,15 +32,17 @@ public class ROSInterface : MonoBehaviour
     {
         this.robotID = robotID;
     }
-    
+
     void Start()
     {
         initPoseTopicName = robotID + "/initialpose";
         goalTopicName = robotID + "/navifra/goal_id";
-        mapChangeRequestTopicName = robotID+ "/map_request";
-        currentPoseTopicName = robotID+"/localization/robot_pos";
-        robotStatusTopicName = robotID+"/status";
-        
+        mapChangeRequestTopicName = robotID + "/map_request";
+        currentPoseTopicName = robotID + "/localization/robot_pos";
+        robotStatusTopicName = robotID + "/status";
+        messageFrequency = 1.0f;
+
+
         robotObj = GameObject.Find(robotID);
 
         // start the ROS connection
@@ -58,8 +60,8 @@ public class ROSInterface : MonoBehaviour
 
         ros.RegisterPublisher<StringMsg>(robotStatusTopicName);
         StartCoroutine(PublishStatus());
-        
-        Debug.Log(robotID + " : initPublisher" );
+
+        Debug.Log(robotID + " : initPublisher");
     }
 
 
@@ -107,10 +109,9 @@ public class ROSInterface : MonoBehaviour
             ros.Publish(currentPoseTopicName, currentPoseMsg);
 
             // Wait for the next publish
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(messageFrequency);
         }
     }
-    
 
     private IEnumerator PublishStatus()
     {
@@ -123,8 +124,8 @@ public class ROSInterface : MonoBehaviour
             };
 
             ros.Publish(robotStatusTopicName, statusMsg);
-            
-            yield return new WaitForSeconds(0.1f);
+
+            yield return new WaitForSeconds(messageFrequency);
         }
     }
 
@@ -139,7 +140,7 @@ public class ROSInterface : MonoBehaviour
         ros.Subscribe<StringMsg>(mapChangeRequestTopicName, CallBackChangeMap);
     }
 
-    
+
     private void CallBackInitPose(PoseWithCovarianceStampedMsg msg)
     {
         Vector3 position = new Vector3((float)msg.pose.pose.position.x, (float)msg.pose.pose.position.y, (float)msg.pose.pose.position.z);
@@ -149,30 +150,30 @@ public class ROSInterface : MonoBehaviour
 
         Debug.Log("call back init pose");
     }
-    
+
     private void CallbackGoal(GoalMsg msg)
     {
         Vector3 position = new Vector3((float)msg.pose.position.x, (float)msg.pose.position.y, (float)msg.pose.position.z);
         position = Utility.ChangeEntrancePosition(position);
-        
+
         string type = msg.type;
 
-        float velocity = 0.1f;
+        float velocity = 0.0f;
         if (type == "normal")
         {
             velocity = 1f;
         }
-        else if(type == "elevator")
+        else if (type == "elevator")
         {
             velocity = 0.5f;
         }
-        else if(type == "door")
+        else if (type == "door")
         {
             velocity = 0.5f;
         }
-        
-        sensorActuator.MoveRobot(robotID, position , velocity);
-        
+
+        sensorActuator.MoveRobot(robotID, position, velocity);
+
         Debug.Log(robotID + ":   call back goal");
     }
 
@@ -182,7 +183,7 @@ public class ROSInterface : MonoBehaviour
         string floor = obj.data;
     }
 
-    
+
 
 
 }

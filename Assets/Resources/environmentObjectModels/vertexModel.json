@@ -251,6 +251,42 @@
 			"color":"#7E88EC",
 			"shape":"Rectangle",
 			"properties":[]
+		},
+		{
+			"id":"vertex_6",
+			"name":"vertex_6",
+			"type":"Vertex",
+			"position":{
+				"x":-4.0,
+				"y":-0.8,
+				"z":1
+			},
+			"size":{
+				"x":0.4,
+				"y":0.4,
+				"z":0.001
+			},
+			"color":"#000000",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"vertex_7",
+			"name":"vertex_7",
+			"type":"Vertex",
+			"position":{
+				"x":1.4,
+				"y":2.8,
+				"z":1
+			},
+			"size":{
+				"x":0.4,
+				"y":0.4,
+				"z":0.001
+			},
+			"color":"#000000",
+			"shape":"Rectangle",
+			"properties":[]
 		}
 	]
 }

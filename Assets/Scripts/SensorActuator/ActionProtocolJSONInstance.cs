@@ -142,7 +142,7 @@ public class ActionProtocolJSONInstance : ActionProtocolInstance
             }
         }
         resultMessage.AddField("result", result);
-        Debug.Log("resultMessage : \n" + resultMessage.ToString(true));
+        Debug.Log("resultMessage : \n" + resultMessage.ToString());
         return resultMessage;
     }
 

@@ -7,7 +7,7 @@ public class Utility
 {
     private static Utility instance;
 
-    public const float zOffset = 30;
+    public const float zOffset = 20;
 
     public static Utility Instance
     {

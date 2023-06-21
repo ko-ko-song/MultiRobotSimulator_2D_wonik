@@ -431,6 +431,24 @@
 			"color":"#F8614A",
 			"shape":"Rectangle",
 			"properties":["physical"]
+		},
+		{
+			"id":"ev-204-1",
+			"name":"ev-204-1",
+			"type":"Elevator",
+			"position":{
+				"x":3.5,
+				"y":6.3,
+				"z":1
+			},
+			"size":{
+				"x":0.3,
+				"y":0.3,
+				"z":1
+			},
+			"color":"#F8614A",
+			"shape":"Rectangle",
+			"properties":[]
 		}
 	]
 }

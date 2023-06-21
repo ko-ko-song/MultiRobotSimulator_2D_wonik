@@ -1,8 +1,8 @@
 {
   "environmentObject": [
     {
-      "id": "1",
-      "name": "1",
+      "id": "robot1",
+      "name": "robot1",
       "type":"Robot",
       "position":{
 	"x":4,
@@ -21,8 +21,8 @@
       ]
     },
     {
-      "id": "2",
-      "name": "2",
+      "id": "robot2",
+      "name": "robot2",
       "type":"Robot",
       "position":{
 	"x":5.5,

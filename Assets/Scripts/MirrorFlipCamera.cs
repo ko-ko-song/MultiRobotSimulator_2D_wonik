@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 [RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
 public class MirrorFlipCamera : MonoBehaviour
@@ -60,13 +62,25 @@ public class MirrorFlipCamera : MonoBehaviour
 
     public void setPosition()
     {
-        SetCameraAspectRatio();
-        Invoke("SetCameraPosition", 0.3f);
+        //SetCameraAspectRatio();
+        Invoke("SetCameraPosition", 0.4f);
     }
 
     private void SetCameraPosition()
     {
-        var list = GameObject.FindGameObjectsWithTag("Vertex");
+        GameObject[] activeObjects = FindObjectsOfType<GameObject>();
+
+        var list = new List<GameObject>();
+
+        foreach (GameObject obj in activeObjects)
+        {
+            if (obj.activeSelf)
+            {
+                list.Add(obj);
+            }
+        }
+
+        //var list = GameObject.FindGameObjectsWithTag("Vertex");
 
         float maxPositionX = -999;
         float maxPositionY = -999;
@@ -77,6 +91,7 @@ public class MirrorFlipCamera : MonoBehaviour
         {
             if (obj.transform.position.x > maxPositionX)
                 maxPositionX = obj.transform.position.x;
+                
             if (obj.transform.position.x < minPositionX)
                 minPositionX = obj.transform.position.x;
             if (obj.transform.position.y > maxPositionY)
@@ -89,9 +104,9 @@ public class MirrorFlipCamera : MonoBehaviour
         float height = maxPositionY - minPositionY;
         Camera camera = gameObject.GetComponent<Camera>();
         if (width > height)
-            camera.orthographicSize = (float)(width * 0.6);
+            camera.orthographicSize = (float)(width * 0.55);
         else
-            camera.orthographicSize = (float)(height * 0.6);
+            camera.orthographicSize = (float)(height * 0.55);
 
         Vector3 pos = new Vector3((minPositionX + width / 2), (minPositionY + height / 2), -1);
         camera.transform.position = pos;

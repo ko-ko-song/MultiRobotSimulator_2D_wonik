@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class SensingActions : MonoBehaviour
 {
@@ -14,7 +14,6 @@ public class SensingActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Invoke("test",5.0f);
     }
 
     //public void test()
@@ -48,7 +47,7 @@ public class SensingActions : MonoBehaviour
         }
         if(sb.Length!= 0)
         {
-            Debug.Log(sb[0] + "  execute action : " +functionName);
+            Debug.Log("execute action : \n" +functionName);
         }
         
         //Debug.Log("action : " + functionName + "\t args :   " + sb.ToString());
@@ -126,7 +125,7 @@ public class SensingActions : MonoBehaviour
         }
         
     }
-    
+
     private void RequestCloseElevatorDoor(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
     {
         string doorId = functionArgs[0];
@@ -256,10 +255,13 @@ public class SensingActions : MonoBehaviour
 
     private void RequestMoveElevator(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<string> functionArgs)
     {
+        string elevatorID = functionArgs[0];
         string goalFloor = functionArgs[1];
         GameObject elevator_vertex = null;
         List<GameObject> robots = new List<GameObject>();
-        if(goalFloor == "1")
+        GameObject elevator = GameObject.Find(elevatorID);
+
+        if (goalFloor == "1")
         {
             elevator_vertex = GameObject.Find("elevator2_in_vertex");
         }
@@ -284,15 +286,45 @@ public class SensingActions : MonoBehaviour
             }
         }
 
-        IEnumerator coroutine = moveElevator(sensorActuatorModule, actionProtocolInstance, robots, goalFloor);
+        
+
+
+        IEnumerator coroutine = moveElevator(sensorActuatorModule, actionProtocolInstance, elevator, robots, goalFloor);
         StartCoroutine(coroutine);
     }
     
-    private IEnumerator moveElevator(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, List<GameObject> robots, string floor)
+    private IEnumerator moveElevator(SensorActuatorModule sensorActuatorModule, ActionProtocolInstance actionProtocolInstance, GameObject elevator, List<GameObject> robots, string floor)
     {
-        float movementTime = 3.0f;
+        if(elevator == null)
+        {
+            Debug.Log("can't find elevator object");
+            yield break;
+        }
+        float floorFloat = float.Parse(floor);
         
-        yield return new WaitForSeconds(movementTime);
+        if (Mathf.Abs(elevator.transform.position.z - floorFloat) < 0.1f)
+        {
+            if (actionProtocolInstance.getProtocolType().Equals("result"))
+            {
+                sensorActuatorModule.sendMessgae(actionProtocolInstance.getResultMessage(Int32.Parse(floor)));
+            }
+
+            yield break;
+        }
+        
+        float elapsedTime = 0f;
+        float movementTime = 3f;
+        Vector3 startPosition = elevator.transform.position;
+        float differenceZ = Mathf.RoundToInt(floorFloat - elevator.transform.position.z);
+        
+        Vector3 targetPosition = new Vector3(elevator.transform.position.x, elevator.transform.position.y + Utility.zOffset*differenceZ, float.Parse(floor));
+        
+        while (elapsedTime < movementTime)
+        {
+            elevator.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / movementTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
         
         foreach (GameObject robotObj in robots)
         {
@@ -328,7 +360,7 @@ public class SensingActions : MonoBehaviour
             return;
         }
         Robot door = gobj.GetComponent<Robot>();
-        Debug.Log(door);
+        
         
         IEnumerator coroutine = openDoor(sensorActuatorModule, actionProtocolInstance, door, functionArgs);
         
