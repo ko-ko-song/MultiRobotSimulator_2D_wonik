@@ -148,9 +148,9 @@ public class ROSInterface : MonoBehaviour
 
         robotObj.transform.position = position;
 
-        Debug.Log("call back init pose");
+        Debug.Log("[ROS] " + robotID + "  call back init pose " + position);
     }
-
+    
     private void CallbackGoal(GoalMsg msg)
     {
         Vector3 position = new Vector3((float)msg.pose.position.x, (float)msg.pose.position.y, (float)msg.pose.position.z);
@@ -171,10 +171,9 @@ public class ROSInterface : MonoBehaviour
         {
             velocity = 0.5f;
         }
+        Debug.Log("[ROS] " + robotID + "  move to pose " + position);
 
         sensorActuator.MoveRobot(robotID, position, velocity);
-
-        Debug.Log(robotID + ":   call back goal");
     }
 
 
