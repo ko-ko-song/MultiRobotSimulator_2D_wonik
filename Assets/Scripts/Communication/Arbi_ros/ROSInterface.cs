@@ -39,7 +39,7 @@ public class ROSInterface : MonoBehaviour
         goalTopicName = robotID + "/navifra/goal_id";
         mapChangeRequestTopicName = robotID + "/map_request";
         currentPoseTopicName = robotID + "/localization/robot_pos";
-        robotStatusTopicName = robotID + "/status";
+        robotStatusTopicName = robotID + "/navigation/state";
         messageFrequency = 1.0f;
 
 

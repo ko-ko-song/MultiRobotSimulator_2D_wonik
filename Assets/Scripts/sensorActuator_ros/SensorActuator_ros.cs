@@ -57,7 +57,7 @@ public class SensorActuator_ros : MonoBehaviour
 
     private IEnumerator MoveThroughPath(Robot robot, List<string> path)
     {
-        robot.robotStatus = RobotStatusEnum.RobotStatus.Move;
+        robot.robotStatus = RobotStatusEnum.RobotStatus.RUNNING;
         foreach (string nodeID in path)
         {
             EnvironmentObject nextVertex = EnvironmentManager.instance.getVertex(nodeID);
@@ -137,7 +137,7 @@ public class SensorActuator_ros : MonoBehaviour
         robot.transform.rotation = Quaternion.RotateTowards(fromRotation, toRotation, Time.deltaTime * robot.turningSpeed);
 
     }
-
+    
     private void move(Robot robot, Transform target)
     {
         robot.transform.position = Vector3.MoveTowards(robot.transform.position, target.position, robot.speed * Time.deltaTime);
