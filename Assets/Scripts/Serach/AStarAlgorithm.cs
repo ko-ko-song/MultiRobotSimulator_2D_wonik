@@ -49,17 +49,29 @@ public class AStarAlgorithm
 
     private List<string> ReconstructPath(Dictionary<string, string> cameFrom, string startId, string goalId)
     {
-        List<string> path = new List<string>();
-        string currentId = goalId;
-
-        while (currentId != startId)
+        
+        try
         {
-            path.Insert(0, currentId);
-            currentId = cameFrom[currentId];
-        }
+            List<string> path = new List<string>();
+            string currentId = goalId;
 
-        path.Insert(0, startId);
-        return path;
+            while (currentId != startId)
+            {
+                path.Insert(0, currentId);
+                Debug.Log(currentId);
+                currentId = cameFrom[currentId];
+            }
+
+            path.Insert(0, startId);
+            return path;
+        }
+        catch
+        {
+            List<string> path = new List<string>();
+            return path;
+        }
+        
+
     }
 }
 

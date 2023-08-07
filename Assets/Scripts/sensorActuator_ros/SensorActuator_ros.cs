@@ -14,6 +14,7 @@ public class SensorActuator_ros : MonoBehaviour
     private void Start()
     {
         graph = new Graph();
+        
     }
 
     public void MoveRobot(string robotID, Vector3 position, float velocity)
@@ -24,7 +25,6 @@ public class SensorActuator_ros : MonoBehaviour
 
         if (robotObj == null)
         {
-
             Debug.Log("robot not found   | received : " +robotID);
             return;
         }
@@ -36,8 +36,32 @@ public class SensorActuator_ros : MonoBehaviour
         
         Robot robot = robotObj.GetComponent<Robot>();
         robot.speed = velocity;
-
+        
         List<string> path = FindPath(robot.locatedVertex.id, vertex.id);
+        Debug.Log("[Move Robot] " + robot.locatedVertex.name);
+        Debug.Log("[Move Robot] " + vertex.id);
+        if (path.Count == 0)
+        {
+            if(robot.locatedVertexName.Equals("elevator1_in_vertex"))
+            {
+                path = FindPath("elevator2_in_vertex", vertex.id);
+                if(path.Count != 0)
+                {
+                    robot.transform.position = GameObject.Find("elevator2_in_vertex").transform.position;
+                    robot.locatedVertexName = "elevator2_in_vertex";
+                }
+            }
+            else if (robot.locatedVertexName.Equals("elevator2_in_vertex"))
+            {
+                path = FindPath("elevator1_in_vertex", vertex.id);
+                if (path.Count != 0)
+                {
+                    robot.transform.position = GameObject.Find("elevator1_in_vertex").transform.position;
+                    robot.locatedVertexName = "elevator1_in_vertex";
+                }
+            }
+        }
+        
         IEnumerator coroutine = MoveThroughPath(robot, path);
         
         if (robot.behaviorCoroutine != null)

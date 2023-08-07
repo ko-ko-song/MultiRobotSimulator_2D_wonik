@@ -377,78 +377,7 @@
 			"color":"#545454",
 			"shape":"Rectangle",
 			"properties":[]
-		},
-		{
-			"id":"front_door1",
-			"name":"front_door1",
-			"type":"Door",
-			"position":{
-				"x":0,
-				"y":0,
-				"z":1
-			},
-			"size":{
-				"x":4.2,
-				"y":0.2,
-				"z":1
-			},
-			"color":"#7E88EC",
-			"shape":"Rectangle",
-			"properties":["physical"]
-		},
-		{
-			"id":"ev-204-1_1",
-			"name":"ev-204-1_1",
-			"type":"Door",
-			"position":{
-				"x":0,
-				"y":4.2,
-				"z":1
-			},
-			"size":{
-				"x":4.2,
-				"y":0.2,
-				"z":1
-			},
-			"color":"#F8614A",
-			"shape":"Rectangle",
-			"properties":["physical"]
-		},
-		{
-			"id":"ev-204-1_2",
-			"name":"ev-204-1_2",
-			"type":"Door",
-			"position":{
-				"x":0,
-				"y":4.2,
-				"z":2
-			},
-			"size":{
-				"x":4.2,
-				"y":0.2,
-				"z":1
-			},
-			"color":"#F8614A",
-			"shape":"Rectangle",
-			"properties":["physical"]
-		},
-		{
-			"id":"ev-204-1",
-			"name":"ev-204-1",
-			"type":"Elevator",
-			"position":{
-				"x":3.5,
-				"y":6.3,
-				"z":1
-			},
-			"size":{
-				"x":0.3,
-				"y":0.3,
-				"z":1
-			},
-			"color":"#F8614A",
-			"shape":"Rectangle",
-			"properties":[]
 		}
+
 	]
 }

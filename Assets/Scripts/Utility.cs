@@ -30,8 +30,8 @@ public class Utility
     public static Vector3 ChangeExitPosition(Vector3 position)
     {
         int y = Convert.ToInt32(Math.Round(position.y));
-
-        if (position.y >= 2)
+        
+        if (position.z >= 2)
         {
             return new Vector3(position.x, position.y - zOffset, position.z);
         }
