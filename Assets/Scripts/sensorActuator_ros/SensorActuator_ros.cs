@@ -16,6 +16,19 @@ public class SensorActuator_ros : MonoBehaviour
         graph = new Graph();
     }
 
+    public void StopRobot(string robotID)
+    {
+        GameObject robotObj = GameObject.Find(robotID);
+        if (robotObj == null)
+        {
+            Debug.Log("robot not found   | received : " + robotID);
+            return;
+        }
+        Robot robot = robotObj.GetComponent<Robot>();
+
+        if (robot.behaviorCoroutine != null)
+            StopCoroutine(robot.behaviorCoroutine);
+    }
     public void MoveRobot(string robotID, Vector3 position, float velocity)
     {
 

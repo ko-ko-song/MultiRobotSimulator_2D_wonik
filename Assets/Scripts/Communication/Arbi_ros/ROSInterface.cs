@@ -23,7 +23,8 @@ public class ROSInterface : MonoBehaviour
     public string mapChangeRequestTopicName = "";
     public string currentPoseTopicName = "";
     public string robotStatusTopicName = "";
-
+    public string robotStopTopicName = "";
+    
     public float messageFrequency = 1.0f;
 
     public SensorActuator_ros sensorActuator;
@@ -40,6 +41,7 @@ public class ROSInterface : MonoBehaviour
         mapChangeRequestTopicName = robotID + "/map_request";
         currentPoseTopicName = robotID + "/localization/robot_pos";
         robotStatusTopicName = robotID + "/navigation/state";
+        robotStopTopicName = robotID + "/stop";
         messageFrequency = 1.0f;
 
 
@@ -63,6 +65,7 @@ public class ROSInterface : MonoBehaviour
 
         Debug.Log(robotID + " : initPublisher");
     }
+
 
 
     private IEnumerator PublishCurrentPose()
@@ -138,8 +141,13 @@ public class ROSInterface : MonoBehaviour
         ros.Subscribe<PoseWithCovarianceStampedMsg>(initPoseTopicName, CallBackInitPose);
         ros.Subscribe<GoalMsg>(goalTopicName, CallbackGoal);
         ros.Subscribe<StringMsg>(mapChangeRequestTopicName, CallBackChangeMap);
+        ros.Subscribe<StringMsg>(robotStopTopicName, CallBackStopRobot);
     }
 
+    private void CallBackStopRobot(StringMsg msg)
+    {
+        sensorActuator.StopRobot(robotID);
+    }
 
     private void CallBackInitPose(PoseWithCovarianceStampedMsg msg)
     {
