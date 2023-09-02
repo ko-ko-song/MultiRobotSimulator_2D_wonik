@@ -287,6 +287,24 @@
 			"color":"#000000",
 			"shape":"Rectangle",
 			"properties":[]
+		},
+		{
+			"id":"calling_vertex",
+			"name":"calling_vertex",
+			"type":"Vertex",
+			"position":{
+				"x":7,
+				"y":-0.8,
+				"z":1
+			},
+			"size":{
+				"x":0.4,
+				"y":0.4,
+				"z":0.001
+			},
+			"color":"#7CFC00",
+			"shape":"Rectangle",
+			"properties":[]
 		}
 	]
 }

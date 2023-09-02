@@ -76,9 +76,9 @@ public class ROSInterface : MonoBehaviour
             Quaternion rotation = robotObj.transform.rotation;
 
             // Convert Unity position & rotation to ROS position & rotation
-            Vector3 rosPosition = (Vector3)position.To<FLU>();
-            rosPosition = Utility.ChangeExitPosition(rosPosition);
-
+            
+            Vector3 rosPosition = Utility.ChangeExitPosition(position);
+            
             Quaternion rosRotation = (Quaternion)rotation.To<FLU>();
 
             DateTime currentTime = DateTime.Now;
@@ -110,7 +110,7 @@ public class ROSInterface : MonoBehaviour
             };
 
             ros.Publish(currentPoseTopicName, currentPoseMsg);
-
+            Debug.Log("[" + robotID + "]  " + "\tx : " + position.x  + "\ty : " + position.y);
             // Wait for the next publish
             yield return new WaitForSeconds(messageFrequency);
         }
@@ -134,8 +134,6 @@ public class ROSInterface : MonoBehaviour
 
 
 
-
-
     private void InitSubscriber()
     {
         ros.Subscribe<PoseWithCovarianceStampedMsg>(initPoseTopicName, CallBackInitPose);
@@ -153,7 +151,11 @@ public class ROSInterface : MonoBehaviour
     {
         Vector3 position = new Vector3((float)msg.pose.pose.position.x, (float)msg.pose.pose.position.y, (float)msg.pose.pose.position.z);
         position = Utility.ChangeEntrancePosition(position);
-
+        EnvironmentObject vertex = EnvironmentManager.instance.getVertexByPosition(position);
+        robotObj.GetComponent<Robot>().locatedVertex = vertex;
+        robotObj.GetComponent<Robot>().locatedVertexName = vertex.name;
+        robotObj.GetComponent<Robot>().robotStatus = RobotStatusEnum.RobotStatus.IDLE;
+        
         robotObj.transform.position = position;
 
         Debug.Log("[ROS] " + robotID + "  call back init pose " + position);
@@ -163,6 +165,7 @@ public class ROSInterface : MonoBehaviour
     {
         Vector3 position = new Vector3((float)msg.pose.position.x, (float)msg.pose.position.y, (float)msg.pose.position.z);
         position = Utility.ChangeEntrancePosition(position);
+        
 
         string type = msg.type;
 

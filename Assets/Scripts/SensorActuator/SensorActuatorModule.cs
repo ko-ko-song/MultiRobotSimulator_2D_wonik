@@ -66,7 +66,7 @@ public class SensorActuatorModule : MonoBehaviour
         
         foreach (var ip in host.AddressList)
         {
-            if (ip.ToString().StartsWith("192") || ip.ToString().StartsWith("172"))
+            if (ip.ToString().StartsWith("172"))
             {
                 return ip.ToString();
             }

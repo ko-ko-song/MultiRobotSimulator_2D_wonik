@@ -149,6 +149,11 @@
 			"id":"edge29",
 			"vertex1":"vertex_7",
 			"vertex2":"front_in_vertex"
+		},
+		{
+			"id":"edge30",
+			"vertex1":"vertex_1",
+			"vertex2":"calling_vertex"
 		}
 	]
 }
