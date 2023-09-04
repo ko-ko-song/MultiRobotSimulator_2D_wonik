@@ -25,7 +25,7 @@ public class SensorActuator_ros : MonoBehaviour
             return;
         }
         Robot robot = robotObj.GetComponent<Robot>();
-
+        robot.robotStatus = RobotStatusEnum.RobotStatus.IDLE;
         if (robot.behaviorCoroutine != null)
             StopCoroutine(robot.behaviorCoroutine);
     }
