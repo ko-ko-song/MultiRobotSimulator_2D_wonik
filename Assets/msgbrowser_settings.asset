@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c444d6f85828f1b4f9b89c7c387f9ddd, type: 3}
   m_Name: msgbrowser_settings
   m_EditorClassIdentifier: 
-  inputPath: D:/OneDrive - UOS/Unity/Simulator/UnityMultiRobotSimulator_wonik/Assets/Scripts/Communication/Arbi_ros/msgs
-  relativeOutPath: RosMessages
+  inputPath: C:/Users/JiHun/Desktop/unity_ws/MultiRobotSimulator_2D_wonik/Assets/RosMessages/navifra_robot_msgs/msg
+  relativeOutPath: RosMessages\GeneratedMessages

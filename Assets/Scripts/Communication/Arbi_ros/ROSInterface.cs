@@ -8,7 +8,6 @@ using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using UnityEngine;
 using RosMessageTypes.BuiltinInterfaces;
 using RosMessageTypes.Core;
-using RosMessageTypes.UnityRoboticsDemo;
 
 public class ROSInterface : MonoBehaviour
 {
@@ -183,7 +182,7 @@ public class ROSInterface : MonoBehaviour
             velocity = 0.5f;
         }
         Debug.Log("[ROS] " + robotID + "  move to pose " + position);
-
+        
         sensorActuator.MoveRobot(robotID, position, velocity);
     }
 

@@ -17,19 +17,22 @@ namespace RosMessageTypes.Core
         public HeaderMsg header;
         public Geometry.PoseMsg pose;
         public string type;
+        public string name;
 
         public GoalMsg()
         {
             this.header = new HeaderMsg();
             this.pose = new Geometry.PoseMsg();
             this.type = "";
+            this.name = "";
         }
 
-        public GoalMsg(HeaderMsg header, Geometry.PoseMsg pose, string type)
+        public GoalMsg(HeaderMsg header, Geometry.PoseMsg pose, string type, string name)
         {
             this.header = header;
             this.pose = pose;
             this.type = type;
+            this.name = name;
         }
 
         public static GoalMsg Deserialize(MessageDeserializer deserializer) => new GoalMsg(deserializer);
@@ -39,6 +42,7 @@ namespace RosMessageTypes.Core
             this.header = HeaderMsg.Deserialize(deserializer);
             this.pose = Geometry.PoseMsg.Deserialize(deserializer);
             deserializer.Read(out this.type);
+            deserializer.Read(out this.name);
         }
 
         public override void SerializeTo(MessageSerializer serializer)
@@ -46,6 +50,7 @@ namespace RosMessageTypes.Core
             serializer.Write(this.header);
             serializer.Write(this.pose);
             serializer.Write(this.type);
+            serializer.Write(this.name);
         }
 
         public override string ToString()
@@ -53,7 +58,8 @@ namespace RosMessageTypes.Core
             return "GoalMsg: " +
             "\nheader: " + header.ToString() +
             "\npose: " + pose.ToString() +
-            "\ntype: " + type.ToString();
+            "\ntype: " + type.ToString() +
+            "\nname: " + name.ToString();
         }
 
 #if UNITY_EDITOR
