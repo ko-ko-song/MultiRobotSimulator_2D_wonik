@@ -125,6 +125,9 @@ public class ROSInterface : MonoBehaviour
                 data = robotObj.GetComponent<Robot>().robotStatus.ToString()
             };
 
+            Debug.Log("[" + robotID + "]  " + robotObj.GetComponent<Robot>().robotStatus.ToString());
+            // Debug.Log("[" + robotID + "]  " + statusMsg);
+
             ros.Publish(robotStatusTopicName, statusMsg);
 
             yield return new WaitForSeconds(messageFrequency);
