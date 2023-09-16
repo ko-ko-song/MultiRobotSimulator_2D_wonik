@@ -23,13 +23,16 @@ public class CaputerImageEditor
         Camera mainCamera = Camera.main;
         if (mainCamera)
         {
-            Vector2 imagePos = GetUnityOriginInImage(mainCamera);
-            Debug.Log($"Unity Origin in Image: {imagePos}");
+            Vector2 imagePosInPixels = GetUnityOriginInImage(mainCamera);
+            float resolution = (2 * mainCamera.orthographicSize) / mainCamera.pixelHeight;
+            Vector2 imagePosInMeters = imagePosInPixels * resolution;
+
+            Debug.Log($"Unity Origin in Image (meters): {imagePosInMeters}");
 
             CaptureScreenshot();
             Debug.Log($"Screenshot saved at: {screenshotPath}");
 
-            SaveInfoToFile(mainCamera, imagePos);
+            SaveInfoToFile(mainCamera, imagePosInMeters, resolution);
             Debug.Log($"Info saved at: {infoFilePath}");
         }
         else
@@ -54,16 +57,14 @@ public class CaputerImageEditor
         ScreenCapture.CaptureScreenshot(screenshotPath);
     }
 
-    private static void SaveInfoToFile(Camera camera, Vector2 imagePos)
+    private static void SaveInfoToFile(Camera camera, Vector2 imagePosInMeters, float resolution)
     {
-        float resolution = (2 * camera.orthographicSize) / camera.pixelHeight;
-        
-        string content = $"originX X: {imagePos.x}\n";
-        content += $"originX Y: {imagePos.y}\n";
+        string content = $"originX X: -{imagePosInMeters.x}\n";
+        content += $"originX Y: -{imagePosInMeters.y}\n";
         content += $"Resolution: {resolution}\n";
         content += $"Image width: {camera.pixelWidth}\n";
         content += $"Image height: {camera.pixelHeight}\n";
-        
+
         File.WriteAllText(infoFilePath, content);
     }
 }
