@@ -125,7 +125,11 @@ public class SensorActuator_ros : MonoBehaviour
 
     private bool isRightFacingWay(Robot robot, float angle)
     {
-        if (Mathf.Abs(angle - robot.transform.rotation.eulerAngles.z) < 0.01)
+        float angleDiff = Mathf.Abs(angle - robot.transform.rotation.eulerAngles.z);
+        if (angleDiff > 359)
+            angleDiff = angleDiff - 360;
+
+        if (angleDiff < 0.01)
             return true;
         else
             return false;
