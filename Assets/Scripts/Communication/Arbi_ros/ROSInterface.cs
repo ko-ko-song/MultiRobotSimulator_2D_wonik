@@ -23,9 +23,12 @@ public class ROSInterface : MonoBehaviour
     public string currentPoseTopicName = "";
     public string robotStatusTopicName = "";
     public string robotStopTopicName = "";
-    
-    public float messageFrequency = 1.0f;
+    public string batteryTopicName = "";
 
+
+
+    public float messageFrequency = 1.0f;
+    
     public SensorActuator_ros sensorActuator;
 
     public ROSInterface(string robotID)
@@ -41,9 +44,10 @@ public class ROSInterface : MonoBehaviour
         currentPoseTopicName = robotID + "/localization/robot_pos";
         robotStatusTopicName = robotID + "/navigation/state";
         robotStopTopicName = robotID + "/stop";
-        messageFrequency = 1.0f;
+        batteryTopicName = robotID + "/battery";
+        messageFrequency = 0.1f;
 
-
+        
         robotObj = GameObject.Find(robotID);
 
         // start the ROS connection
@@ -60,6 +64,9 @@ public class ROSInterface : MonoBehaviour
         StartCoroutine(PublishCurrentPose());
 
         ros.RegisterPublisher<StringMsg>(robotStatusTopicName);
+        StartCoroutine(PublishStatus());
+
+        ros.RegisterPublisher<Float64Msg>(batteryTopicName);
         StartCoroutine(PublishStatus());
 
         Debug.Log(robotID + " : initPublisher");
@@ -109,12 +116,12 @@ public class ROSInterface : MonoBehaviour
             };
 
             ros.Publish(currentPoseTopicName, currentPoseMsg);
-            Debug.Log("[" + robotID + "]  " + "\tx : " + position.x  + "\ty : " + position.y);
+            //Debug.Log("[" + robotID + "]  " + "\tx : " + position.x  + "\ty : " + position.y);
             // Wait for the next publish
-            yield return new WaitForSeconds(messageFrequency);
+            yield return new WaitForSeconds(0.03f);
         }
     }
-
+    
     private IEnumerator PublishStatus()
     {
         while (true)
@@ -127,10 +134,24 @@ public class ROSInterface : MonoBehaviour
 
             ros.Publish(robotStatusTopicName, statusMsg);
 
-            yield return new WaitForSeconds(messageFrequency);
+            yield return new WaitForSeconds(0.1f);
         }
     }
+    private IEnumerator PublishBattery()
+    {
+        while (true)
+        {
+            // Create a ROS message based on the current transform
+            Float64Msg batteryMsg = new Float64Msg
+            {
+                data = robotObj.GetComponent<Robot>().remainingBattery
+            };
 
+            ros.Publish(batteryTopicName, batteryMsg);
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 
 
     private void InitSubscriber()

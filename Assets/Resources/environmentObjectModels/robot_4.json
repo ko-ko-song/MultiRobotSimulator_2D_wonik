@@ -39,6 +39,26 @@
       "properties": [
         "physical"
       ]
+    },
+    {
+      "id": "robot3",
+      "name": "robot3",
+      "type":"Robot",
+      "position":{
+	"x":9,
+	"y":1.5,
+	"z":1
+	},
+      "size":{
+	"x":0.8,
+	"y":0.8,
+	"z":0.01
+	},
+      "color": "#ffbf00",
+      "shape": "Pentagon",
+      "properties": [
+        "physical"
+      ]
     }
   ]
 }

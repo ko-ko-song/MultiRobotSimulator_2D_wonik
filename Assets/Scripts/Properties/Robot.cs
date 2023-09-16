@@ -16,7 +16,7 @@ public class Robot : MonoBehaviour
     public EnvironmentObject locatedVertex;
     public List<GameObject> aroundObjects;
     public GameObject loadedObject;
-    public int remainingBattery = 80;
+    public float remainingBattery = 80;
     public int maxinumBattery = 100;
     public bool loading = false;
 

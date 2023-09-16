@@ -199,6 +199,24 @@
 			"properties":[]
 		},
 		{
+			"id":"start_vertex_3",
+			"name":"start_vertex_3",
+			"type":"Vertex",
+			"position":{
+				"x":9,
+				"y":1.5,
+				"z":1
+			},
+			"size":{
+				"x":0.4,
+				"y":0.4,
+				"z":0.001
+			},
+			"color":"#000000",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
 			"id":"elevator2_in_vertex",
 			"name":"elevator2_in_vertex",
 			"type":"Vertex",
@@ -285,6 +303,24 @@
 				"z":0.001
 			},
 			"color":"#000000",
+			"shape":"Rectangle",
+			"properties":[]
+		},
+		{
+			"id":"deliveryDepot",
+			"name":"deliveryDepot",
+			"type":"Vertex",
+			"position":{
+				"x":-5.5,
+				"y":1.0,
+				"z":1
+			},
+			"size":{
+				"x":0.4,
+				"y":0.4,
+				"z":0.001
+			},
+			"color":"#228B22",
 			"shape":"Rectangle",
 			"properties":[]
 		},

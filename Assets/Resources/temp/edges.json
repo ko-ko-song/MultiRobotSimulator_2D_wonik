@@ -154,6 +154,16 @@
 			"id":"edge30",
 			"vertex1":"vertex_1",
 			"vertex2":"calling_vertex"
+		},
+		{
+			"id":"edge31",
+			"vertex1":"start_vertex_3",
+			"vertex2":"calling_vertex"
+		},
+		{
+			"id":"edge32",
+			"vertex1":"deliveryDepot",
+			"vertex2":"vertex_6"
 		}
 	]
 }
