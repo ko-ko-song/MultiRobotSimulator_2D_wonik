@@ -158,7 +158,7 @@
 		{
 			"id":"edge31",
 			"vertex1":"start_vertex_3",
-			"vertex2":"calling_vertex"
+			"vertex2":"vertex_1"
 		},
 		{
 			"id":"edge32",
